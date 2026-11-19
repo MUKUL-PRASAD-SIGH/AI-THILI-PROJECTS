@@ -88,3 +88,120 @@ def detokenize(tokens: list[str]) -> str:
         else:
             out += " " + tok
     return out
+
+
+# ---------------------------------------------------------------------------
+# Milestone 2: n-gram language model with smoothing
+# ---------------------------------------------------------------------------
+
+BOS = "<s>"
+EOS = "</s>"
+
+
+class NGramModel:
+    """An n-gram language model with add-k smoothing and linear interpolation.
+
+    For every order i = 1..n the add-k estimate is
+
+        P_i(w | h) = (count(h, w) + k) / (count(h) + k * V)
+
+    and the final probability mixes the orders whose history was seen in training:
+
+        P(w | h) = sum_i lambda_i * P_i(w | h_i)      (lambdas renormalised)
+
+    so an unseen trigram history falls back to the bigram and unigram estimates
+    instead of collapsing to a uniform guess.
+    """
+
+    def __init__(self, n: int = 3, k: float = 0.1, lambdas: list[float] | None = None):
+        if n < 1:
+            raise ValueError("n must be >= 1")
+        if k <= 0:
+            raise ValueError("k must be > 0 (add-k smoothing)")
+        self.n = n
+        self.k = k
+        # Default weights favour longer histories: e.g. n=3 -> [0.1, 0.3, 0.6] for uni/bi/tri.
+        self.lambdas = lambdas or [i / sum(range(1, n + 1)) for i in range(1, n + 1)]
+        if len(self.lambdas) != n:
+            raise ValueError("need one lambda per order")
+        # counts[i][history_tuple][word] for history length i (0 = unigram).
+        self.counts: list[dict[tuple, dict[str, int]]] = [dict() for _ in range(n)]
+        self.context_totals: list[dict[tuple, int]] = [dict() for _ in range(n)]
+        self.vocab: set[str] = set()
+
+    # -- training -----------------------------------------------------------
+    def fit(self, sentences: list[list[str]]) -> "NGramModel":
+        for sent in sentences:
+            padded = [BOS] * (self.n - 1) + list(sent) + [EOS]
+            for idx in range(self.n - 1, len(padded)):
+                word = padded[idx]
+                self.vocab.add(word)
+                for order in range(self.n):
+                    history = tuple(padded[idx - order:idx]) if order else ()
+                    table = self.counts[order].setdefault(history, {})
+                    table[word] = table.get(word, 0) + 1
+                    self.context_totals[order][history] = self.context_totals[order].get(history, 0) + 1
+        return self
+
+    @property
+    def vocab_size(self) -> int:
+        return len(self.vocab)
+
+    # -- probabilities ------------------------------------------------------
+    def _history(self, context: list[str]) -> list[str]:
+        """Last n-1 tokens of the current sentence, left-padded with <s>."""
+        return ([BOS] * (self.n - 1) + list(context))[-(self.n - 1):] if self.n > 1 else []
+
+    def addk_prob(self, word: str, history: tuple) -> float:
+        order = len(history)
+        total = self.context_totals[order].get(history, 0)
+        count = self.counts[order].get(history, {}).get(word, 0)
+        return (count + self.k) / (total + self.k * self.vocab_size)
+
+    def prob(self, word: str, context: list[str]) -> float:
+        """Smoothed, interpolated P(word | context)."""
+        if not self.vocab:
+            raise RuntimeError("model is not trained")
+        hist = self._history(context)
+        weighted, weight_sum = 0.0, 0.0
+        for order in range(self.n):
+            history = tuple(hist[len(hist) - order:]) if order else ()
+            if order and history not in self.context_totals[order]:
+                continue  # unseen history: skip this order and renormalise
+            weighted += self.lambdas[order] * self.addk_prob(word, history)
+            weight_sum += self.lambdas[order]
+        return weighted / weight_sum
+
+    def distribution(self, context: list[str]) -> dict[str, float]:
+        """P(w | context) for every word in the vocabulary (sums to 1)."""
+        return {w: self.prob(w, context) for w in self.vocab}
+
+    def perplexity(self, sentences: list[list[str]]) -> float:
+        import math
+
+        log_sum, count = 0.0, 0
+        for sent in sentences:
+            context: list[str] = []
+            for word in list(sent) + [EOS]:
+                log_sum += math.log(self.prob(word, context))
+                context.append(word)
+                count += 1
+        return math.exp(-log_sum / max(count, 1))
+
+    # -- persistence --------------------------------------------------------
+    def to_dict(self) -> dict:
+        return {
+            "n": self.n, "k": self.k, "lambdas": self.lambdas,
+            "counts": [[[list(h), t] for h, t in table.items()] for table in self.counts],
+        }
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "NGramModel":
+        model = cls(n=data["n"], k=data["k"], lambdas=data["lambdas"])
+        for order, table in enumerate(data["counts"]):
+            for history, words in table:
+                history = tuple(history)
+                model.counts[order][history] = dict(words)
+                model.context_totals[order][history] = sum(words.values())
+                model.vocab.update(words)
+        return model

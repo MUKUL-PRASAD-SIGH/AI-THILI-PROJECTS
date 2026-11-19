@@ -56,3 +56,23 @@ def write_anonymized_transcript(turns: list[tuple[str, str]], path: Path | str =
     path = Path(path)
     path.write_text("\n".join(f"{s.capitalize()}: {anonymize(t)}" for s, t in turns) + "\n", encoding="utf-8")
     return path
+
+
+MODEL_PATH = ROOT / "models" / "ngram.json"
+
+
+def save_model(model, path: Path | str = MODEL_PATH) -> Path:
+    import json
+
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(model.to_dict()), encoding="utf-8")
+    return path
+
+
+def load_model(path: Path | str = MODEL_PATH):
+    import json
+
+    from app.core import NGramModel
+
+    return NGramModel.from_dict(json.loads(Path(path).read_text(encoding="utf-8")))
