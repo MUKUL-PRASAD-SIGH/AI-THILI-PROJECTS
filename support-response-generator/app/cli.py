@@ -51,7 +51,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--corpus", default=str(storage.CORPUS_PATH))
     p.add_argument("--model", default=str(storage.MODEL_PATH))
     p.add_argument("-n", type=int, default=3, help="n-gram order (default 3)")
-    p.add_argument("-k", type=float, default=0.1, help="add-k smoothing constant (default 0.1)")
+    p.add_argument("-k", type=float, default=0.01, help="add-k smoothing constant (default 0.01)")
     p.set_defaults(func=cmd_train)
     return parser
 

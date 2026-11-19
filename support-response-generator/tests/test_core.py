@@ -1,5 +1,10 @@
+import math
+
+import pytest
+
 from app import storage
-from app.core import anonymize, detokenize, preprocess, tokenize
+from app.core import (NGramModel, anonymize, append_words, complete, current_context, detokenize, generate,
+                      preprocess, suggest_next, tokenize)
 
 
 # --- Milestone 1: preprocessing / anonymization -----------------------------
@@ -41,12 +46,6 @@ def test_prepared_corpus_has_no_raw_pii():
 
 # --- Milestone 2: n-gram model with smoothing ------------------------------
 
-import math
-
-import pytest
-
-from app.core import NGramModel
-
 TOY = [["thank", "you", "for", "reaching", "out", "."],
        ["thank", "you", "for", "your", "patience", "."],
        ["thank", "you", "for", "your", "patience", "."]]
@@ -87,3 +86,70 @@ def test_invalid_parameters():
         NGramModel(n=0)
     with pytest.raises(ValueError):
         NGramModel(k=0)
+
+
+# --- Milestone 3: suggestions and continuation ------------------------------
+
+@pytest.fixture(scope="module")
+def corpus_model():
+    return NGramModel().fit(storage.load_corpus())
+
+
+def test_current_context_uses_only_the_open_sentence():
+    assert current_context("Hi Priya, thank you. Let me") == ["let", "me"]
+    assert current_context("Thank you.") == []
+    assert current_context("Hi Priya,") == ["hi", "<NAME>", ","]
+
+
+def test_suggest_next_returns_ranked_top_k(corpus_model):
+    sugg = suggest_next(corpus_model, ["thank", "you", "for"], k=3)
+    assert len(sugg) == 3
+    assert [w for w, _ in sugg][0] in {"reaching", "contacting", "your"}
+    assert sugg[0][1] >= sugg[1][1] >= sugg[2][1]
+
+
+def test_suggestions_are_accurate_on_common_phrases(corpus_model):
+    cases = {
+        "Let me check the": "status",
+        "The refund will be processed within 5 to 7 business": "days",
+        "Is there anything else I can help you": "with",
+        "Thank you for your": "patience",
+    }
+    for draft, expected in cases.items():
+        assert suggest_next(corpus_model, current_context(draft), k=1)[0][0] == expected
+
+
+def test_generate_greedy_completes_a_sentence(corpus_model):
+    words = generate(corpus_model, current_context("Let me check the"), max_words=15)
+    assert words[0] == "status" and words[-1] == "."
+
+
+def test_generate_sampling_is_reproducible_with_seed(corpus_model):
+    a = generate(corpus_model, [], strategy="sample", seed=7)
+    b = generate(corpus_model, [], strategy="sample", seed=7)
+    assert a == b and len(a) > 0
+
+
+def test_generate_respects_max_words(corpus_model):
+    assert len(generate(corpus_model, [], max_words=3, stop_at_sentence_end=False)) <= 3
+
+
+def test_append_words_spacing():
+    assert append_words("Thank you", ["for", "waiting", "."]) == "Thank you for waiting."
+    assert append_words("", ["hello", ","]) == "hello,"
+
+
+def test_complete_extends_draft(corpus_model):
+    out = complete(corpus_model, "Please check your inbox and")
+    assert out.startswith("Please check your inbox and your spam folder")
+
+
+def test_default_smoothing_beats_heavier_smoothing_on_held_out_data():
+    import random
+
+    sents = storage.load_corpus()
+    random.Random(0).shuffle(sents)
+    held_out, train = sents[:14], sents[14:]
+    tuned = NGramModel().fit(train).perplexity(held_out)
+    laplace = NGramModel(k=1.0).fit(train).perplexity(held_out)
+    assert tuned < laplace

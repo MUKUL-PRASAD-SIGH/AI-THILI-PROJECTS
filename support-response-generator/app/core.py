@@ -113,15 +113,17 @@ class NGramModel:
     instead of collapsing to a uniform guess.
     """
 
-    def __init__(self, n: int = 3, k: float = 0.1, lambdas: list[float] | None = None):
+    def __init__(self, n: int = 3, k: float = 0.01, lambdas: list[float] | None = None):
         if n < 1:
             raise ValueError("n must be >= 1")
         if k <= 0:
             raise ValueError("k must be > 0 (add-k smoothing)")
         self.n = n
         self.k = k
-        # Default weights favour longer histories: e.g. n=3 -> [0.1, 0.3, 0.6] for uni/bi/tri.
-        self.lambdas = lambdas or [i / sum(range(1, n + 1)) for i in range(1, n + 1)]
+        # Default weights grow with i^2 so longer histories dominate when they were seen:
+        # n=3 -> [0.07, 0.29, 0.64] for uni/bi/tri. k=0.01 and these weights gave the lowest
+        # held-out perplexity on the sample corpus (see README).
+        self.lambdas = lambdas or [i * i / sum(j * j for j in range(1, n + 1)) for i in range(1, n + 1)]
         if len(self.lambdas) != n:
             raise ValueError("need one lambda per order")
         # counts[i][history_tuple][word] for history length i (0 = unigram).
@@ -205,3 +207,86 @@ class NGramModel:
                 model.context_totals[order][history] = sum(words.values())
                 model.vocab.update(words)
         return model
+
+
+# ---------------------------------------------------------------------------
+# Milestone 3: next-word suggestions and response continuation
+# ---------------------------------------------------------------------------
+
+def current_context(draft: str) -> list[str]:
+    """Tokens of the sentence the agent is currently writing.
+
+    The draft is anonymized first, so "Hi Priya," is seen as "hi <NAME> ,".
+    If the draft ends with . ! or ?, a new sentence starts and the context is empty.
+    """
+    tokens = tokenize(anonymize(re.sub(r"\s+", " ", draft)))
+    sentences = split_sentences(tokens)
+    if not sentences or sentences[-1][-1] in SENTENCE_END:
+        return []
+    return sentences[-1]
+
+
+def suggest_next(model: NGramModel, context: list[str], k: int = 3) -> list[tuple[str, float]]:
+    """Top-k most likely next words with their smoothed probabilities."""
+    dist = model.distribution(context)
+    dist.pop(EOS, None)
+    dist.pop(BOS, None)
+    ranked = sorted(dist.items(), key=lambda kv: (-kv[1], kv[0]))
+    return ranked[:max(k, 0)]
+
+
+def generate(model: NGramModel, context: list[str], max_words: int = 20, strategy: str = "greedy",
+             temperature: float = 1.0, seed: int | None = None, stop_at_sentence_end: bool = True) -> list[str]:
+    """Continue `context` word by word.
+
+    strategy="greedy" always takes the most likely word; "sample" draws from the
+    distribution (sharpened or flattened by `temperature`). A no-repeat-n-gram guard
+    stops greedy decoding from looping on the same phrase.
+    """
+    import random
+
+    if strategy not in {"greedy", "sample"}:
+        raise ValueError("strategy must be 'greedy' or 'sample'")
+    rng = random.Random(seed)
+    tokens = list(context)
+    out: list[str] = []
+    seen = {tuple(tokens[i:i + model.n]) for i in range(len(tokens) - model.n + 1)}
+    for _ in range(max_words):
+        dist = model.distribution(tokens)
+        dist.pop(BOS, None)
+        prefix = tuple(tokens[-(model.n - 1):]) if model.n > 1 else ()
+        for word in list(dist):
+            if len(prefix) == model.n - 1 and prefix + (word,) in seen and len(dist) > 1:
+                del dist[word]
+        if strategy == "greedy":
+            word = max(dist, key=lambda w: (dist[w], w))
+        else:
+            words = sorted(dist)
+            weights = [dist[w] ** (1.0 / max(temperature, 1e-6)) for w in words]
+            word = rng.choices(words, weights=weights, k=1)[0]
+        if word == EOS:
+            break
+        if len(prefix) == model.n - 1:
+            seen.add(prefix + (word,))
+        tokens.append(word)
+        out.append(word)
+        if stop_at_sentence_end and word in SENTENCE_END:
+            break
+    return out
+
+
+def append_words(draft: str, words: list[str]) -> str:
+    """Append generated tokens to a draft, with natural spacing around punctuation."""
+    for word in words:
+        if not draft or draft.endswith(" "):
+            draft += word
+        elif word in PUNCTUATION:
+            draft += word
+        else:
+            draft += " " + word
+    return draft
+
+
+def complete(model: NGramModel, draft: str, **kwargs) -> str:
+    """Return the draft extended by a generated continuation."""
+    return append_words(draft, generate(model, current_context(draft), **kwargs))
