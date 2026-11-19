@@ -136,7 +136,8 @@ def test_generate_respects_max_words(corpus_model):
 
 def test_append_words_spacing():
     assert append_words("Thank you", ["for", "waiting", "."]) == "Thank you for waiting."
-    assert append_words("", ["hello", ","]) == "hello,"
+    assert append_words("", ["hello", ","]) == "Hello,"
+    assert append_words("Done.", ["i'm", "sorry", ",", "i", "will", "help", "<NAME>"]) == "Done. I'm sorry, I will help <NAME>"
 
 
 def test_complete_extends_draft(corpus_model):

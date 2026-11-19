@@ -276,9 +276,19 @@ def generate(model: NGramModel, context: list[str], max_words: int = 20, strateg
     return out
 
 
+def _true_case(word: str, sentence_start: bool) -> str:
+    if word.startswith("<"):
+        return word  # placeholders stay as they are
+    if word == "i" or word.startswith("i'"):
+        return "I" + word[1:]
+    return word[:1].upper() + word[1:] if sentence_start else word
+
+
 def append_words(draft: str, words: list[str]) -> str:
-    """Append generated tokens to a draft, with natural spacing around punctuation."""
+    """Append generated tokens to a draft: natural spacing around punctuation,
+    capitalised sentence starts and a capital "I"."""
     for word in words:
+        word = _true_case(word, sentence_start=not draft.strip() or draft.rstrip()[-1] in SENTENCE_END)
         if not draft or draft.endswith(" "):
             draft += word
         elif word in PUNCTUATION:
