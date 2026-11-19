@@ -1,0 +1,143 @@
+hi <NAME> , thank you for reaching out .
+i'm sorry to hear that your order has not arrived yet .
+let me check the status of your order for you .
+i can see that your order was shipped on monday and it is expected to arrive within 2 business days .
+you can track your package using the link we sent to <EMAIL> .
+hello , thank you for contacting us .
+i'm sorry for the inconvenience caused by the duplicate charge .
+please do not share your full card number in chat .
+i have raised a refund request for the duplicate charge .
+the refund will be processed within 5 to 7 business days .
+hi <NAME> , thank you for reaching out .
+i'm sorry you are having trouble logging in .
+i have sent a password reset link to your registered email address .
+please check your inbox and your spam folder .
+the link will expire in 24 hours .
+let me know if you need any further help .
+hello , thank you for contacting us .
+i'm sorry to hear that the product arrived damaged .
+could you please share a photo of the damaged item ?
+thank you for the photo .
+i have arranged a free replacement for you .
+the replacement will be shipped within 2 business days .
+hello , thank you for reaching out .
+i can help you cancel your subscription .
+please go to your account settings and click on manage subscription .
+if you need any further help , please let me know .
+we are always happy to help .
+hi <NAME> , thank you for contacting us .
+i'm sorry the product did not meet your expectations .
+i have initiated a refund for your order .
+the refund will be processed within 5 to 7 business days to your original payment method .
+is there anything else i can help you with ?
+hello , thank you for reaching out .
+i'm sorry to hear that your package is missing .
+let me check the status of your order with our delivery partner .
+i have opened an investigation with the courier .
+we will update you within 48 hours .
+thank you for your patience .
+hi there , thank you for contacting us .
+i'm sorry for the inconvenience .
+could you please share the discount code you are trying to use ?
+thank you for the details .
+the code has expired , but i have applied a new discount to your account .
+let me know if you need any further help .
+hi <NAME> , thank you for reaching out .
+i can help you update the delivery address for your order .
+could you please share the new address ?
+thank you .
+i have updated the delivery address for your order .
+you will receive a confirmation email shortly .
+hello , thank you for contacting us .
+i'm sorry you are having trouble with the app .
+could you please try updating the app to the latest version ?
+if the issue continues , please uninstall and reinstall the app .
+let me know if you need any further help .
+hello , thank you for reaching out .
+i'm sorry for the confusion about the late fee .
+let me check your account for you .
+i can see that the payment was received after the due date .
+as a one time courtesy , i have removed the late fee from your account .
+hi <NAME> , thank you for contacting us .
+i'm sorry for the delay with your refund .
+let me check the status of your refund for you .
+i can see that the refund was processed on friday .
+it will appear in your account within 5 to 7 business days .
+thank you for your patience .
+hello , thank you for reaching out .
+i can help you upgrade your plan .
+please go to your account settings and click on manage subscription .
+once you upgrade , the new features will be available immediately .
+is there anything else i can help you with ?
+hello , thank you for contacting us .
+i'm sorry to hear that you received the wrong item .
+i have arranged a free replacement for you .
+please keep the wrong item , there is no need to return it .
+the replacement will be shipped within 2 business days .
+hello , thank you for reaching out .
+i'm sorry you are having trouble logging in .
+for your security , your account was locked after several failed attempts .
+i have unlocked your account and sent a password reset link to your registered email address .
+let me know if you need any further help .
+hi <NAME> , thank you for contacting us .
+let me check the status of your order for you .
+your order is being packed and it will be shipped within 24 hours .
+you will receive a tracking link by email once it ships .
+hello , thank you for reaching out .
+i can help you return your item .
+please go to your orders page and click on return item .
+once we receive the item , the refund will be processed within 5 to 7 business days .
+is there anything else i can help you with ?
+hello , thank you for contacting us .
+i'm sorry to hear about your experience with our delivery partner .
+i have shared your feedback with the delivery team .
+we take this seriously and we will make sure it does not happen again .
+thank you for your patience .
+hello , thank you for reaching out .
+shipping to canada usually takes 5 to 7 business days .
+you can track your package using the link in your confirmation email .
+let me know if you need any further help .
+hi <NAME> , thank you for contacting us .
+i'm sorry for the inconvenience .
+let me check your payment for you .
+i can see that the payment did not go through .
+the amount will be returned to your original payment method within 5 to 7 business days .
+hello , thank you for reaching out .
+i have sent the invoice for your order to your registered email address .
+please check your inbox and your spam folder .
+is there anything else i can help you with ?
+hello , thank you for contacting us .
+i can help you with your free trial .
+i have extended your free trial by 7 days .
+if you need any further help , please let me know .
+we are always happy to help .
+hello , thank you for reaching out .
+i'm sorry the item is out of stock at the moment .
+we expect it to be back in stock within 2 weeks .
+i can notify you by email when the item is back in stock .
+is there anything else i can help you with ?
+hi <NAME> , thank you for contacting us .
+i'm sorry for the inconvenience caused by the duplicate charge .
+let me check your payment for you .
+i have raised a refund request for the duplicate charge .
+the refund will be processed within 5 to 7 business days .
+hello , thank you for reaching out .
+i'm sorry to hear that your order arrived late .
+i have added a credit to your account for the inconvenience .
+we will make sure it does not happen again .
+thank you for your patience .
+hello , thank you for contacting us .
+i can help you delete your account .
+please note that this action cannot be undone .
+i have submitted a request to delete your account .
+you will receive a confirmation email within 48 hours .
+hello , thank you for reaching out .
+i can help you change your password .
+please go to your account settings and click on change password .
+let me know if you need any further help .
+we are always happy to help .
+hi <NAME> , thank you for contacting us .
+i'm sorry for the delay with your refund .
+let me check the status of your refund for you .
+the refund has been approved and it will be processed within 5 to 7 business days .
+thank you for your patience .
