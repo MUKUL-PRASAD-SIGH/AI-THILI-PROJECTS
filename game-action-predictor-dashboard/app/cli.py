@@ -68,6 +68,41 @@ def cmd_mine(args) -> int:
     return 0
 
 
+DEFAULT_BASE = "EleutherAI/pythia-14m"
+
+
+def set_threads(n: int) -> None:
+    """Torch CPU threads. 1 is the safe default: on a laptop short of memory, multi-threaded matrix
+    multiplies with a 50k-token vocabulary can crash; a 14M-parameter model trains fine on one core."""
+    import torch
+
+    torch.set_num_threads(max(1, n))
+
+
+def cmd_train(args) -> int:
+    from app.core import split_by_game
+    from app.lm import ActionLM
+
+    set_threads(args.threads)
+    possessions = storage.read_sequences(args.sequences)
+    train, test = split_by_game(possessions)
+    val = test[:args.val_size]
+    if args.from_scratch:
+        lm, base = ActionLM.tiny(seed=args.seed), "tiny GPT-2 (random init)"
+    else:
+        lm, base = ActionLM.load(args.base), args.base
+    n_params = sum(x.numel() for x in lm.model.parameters())
+    print(f"Continued pretraining of {base} ({n_params / 1e6:.1f}M parameters) on {len(train):,} training "
+          f"possessions; validation on {len(val)} possessions from held-out games.")
+    history = lm.pretrain(train, val, steps=args.steps, batch_size=args.batch_size, learning_rate=args.lr,
+                          warmup=args.warmup, eval_every=args.eval_every, seed=args.seed)
+    meta = {"base": base, "steps": args.steps, "batch_size": args.batch_size, "learning_rate": args.lr,
+            "seed": args.seed, "train_possessions": len(train), "parameters": n_params}
+    out = lm.save(args.out, history, meta)
+    print(f"Validation loss {history[0]['val_loss']:.3f} -> {history[-1]['val_loss']:.3f}. Saved -> {out}")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="game-action-predictor",
                                      description="Frequent play sequences and next-action prediction.")
@@ -92,6 +127,21 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--max-ngram", type=int, default=4, help="longest contiguous run added to each basket")
     p.add_argument("--top", type=int, default=10)
     p.set_defaults(func=cmd_mine)
+
+    p = sub.add_parser("train", help="continue pretraining a language model on possession sequences")
+    p.add_argument("--base", default=DEFAULT_BASE, help=f"Hugging Face causal LM (default {DEFAULT_BASE})")
+    p.add_argument("--from-scratch", action="store_true", help="train a tiny randomly initialised GPT-2 instead")
+    p.add_argument("--steps", type=int, default=300)
+    p.add_argument("--batch-size", type=int, default=16)
+    p.add_argument("--lr", type=float, default=1e-4)
+    p.add_argument("--warmup", type=int, default=30)
+    p.add_argument("--eval-every", type=int, default=50)
+    p.add_argument("--val-size", type=int, default=300)
+    p.add_argument("--seed", type=int, default=0)
+    p.add_argument("--threads", type=int, default=1, help="torch CPU threads (default 1, see README)")
+    p.add_argument("--sequences", default=str(storage.SEQUENCES_PATH))
+    p.add_argument("--out", default=str(storage.MODEL_DIR))
+    p.set_defaults(func=cmd_train)
     return parser
 
 
