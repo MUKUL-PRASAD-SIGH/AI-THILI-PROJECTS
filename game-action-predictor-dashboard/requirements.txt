@@ -1,0 +1,7 @@
+numpy>=1.24
+pandas>=2.0
+thilimarketbasket @ git+https://github.com/thili-ai/thilimarketbasket.git
+torch>=2.2
+transformers>=4.40,<5
+python-dotenv>=1.0
+pytest>=8.0
