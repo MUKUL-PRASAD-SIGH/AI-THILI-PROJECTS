@@ -1,0 +1,8 @@
+# AI-THILI-PROJECTS
+
+A collection of projects built for the askThili programme.
+Each project lives in its own folder and is developed on its own branch.
+
+| Project | Branch | Folder |
+|---|---|---|
+| Support Response Generator (n-gram next-word suggester) | `support-response-generator` | `support-response-generator/` |
