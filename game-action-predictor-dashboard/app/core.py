@@ -106,3 +106,66 @@ def sequence_stats(possessions: list[Possession]) -> dict:
             "events": int(sum(lengths)), "mean_length": float(np.mean(lengths)), "max_length": int(max(lengths)),
             "actions": len(counts), "most_common": counts.most_common(5)}
 
+
+
+# ---------------------------------------------------------------------------
+# Milestone 2: frequent action sequences with thilimarketbasket
+# ---------------------------------------------------------------------------
+
+OUTCOMES = {"three_made", "three_missed", "jumper_made", "jumper_missed", "layup_made", "layup_missed", "dunk",
+            "foul_drawn", "turnover"}
+
+
+def is_sequence(item: str) -> bool:
+    return TRANSITION in item
+
+
+def describe(itemset) -> str:
+    """Readable form of an itemset: sequences as "a -> b", teams as 'Comets'."""
+    parts = []
+    for item in sorted(itemset, key=lambda x: (not x.startswith("team="), -x.count(TRANSITION), x)):
+        parts.append(item[5:] if item.startswith("team=") else item.replace(TRANSITION, " -> "))
+    return " + ".join(parts)
+
+
+def mine_patterns(possessions: list[Possession], min_support: float = 0.01, max_size: int = 3,
+                  max_ngram: int = 4, min_confidence: float = 0.3) -> dict:
+    """Run the thilimarketbasket Apriori miner over possession baskets.
+
+    Returns the raw itemsets and rules plus three views analysts care about:
+      sequences  - the most frequent contiguous plays (a -> b -> c), by support
+      signatures - for each team, the plays it runs far more than the league (rule team -> play, by lift)
+      outcomes   - "possessions that run play X end in outcome Y": rule play -> outcome, by lift
+    """
+    from thilimarketbasket.mine import frequent_itemsets, rules
+
+    baskets = to_baskets(possessions, max_ngram=max_ngram)
+    itemsets = frequent_itemsets(baskets, min_support=min_support, max_size=max_size)
+    all_rules = rules(itemsets, min_confidence=0.0)
+
+    sequences = sorted(((next(iter(s)), sup) for s, sup in itemsets.items() if len(s) == 1 and is_sequence(next(iter(s)))),
+                       key=lambda x: (-x[1], x[0]))
+
+    signatures: dict[str, list] = {}
+    outcomes = []
+    for ante, cons, support, confidence, lift in all_rules:
+        if len(ante) != 1 or len(cons) != 1:
+            continue
+        a, c = next(iter(ante)), next(iter(cons))
+        if a.startswith("team=") and not c.startswith("team="):
+            signatures.setdefault(a[5:], []).append((c, support, confidence, lift))
+        elif is_sequence(a) and c in OUTCOMES and c not in a.split(TRANSITION) and confidence >= min_confidence:
+            outcomes.append((a, c, support, confidence, lift))
+    for team in signatures:
+        signatures[team].sort(key=lambda r: (-r[3], -r[1]))
+    outcomes.sort(key=lambda r: (-r[4], -r[2]))
+    return {"n_baskets": len(baskets), "itemsets": itemsets, "sequences": sequences,
+            "signatures": signatures, "outcomes": outcomes}
+
+
+def team_lift(patterns: dict, team: str, item: str) -> float:
+    """Lift of the rule team -> item (how many times more often this team runs it than the league)."""
+    for name, _support, _confidence, lift in patterns["signatures"].get(team, []):
+        if name == item:
+            return lift
+    return float("nan")
