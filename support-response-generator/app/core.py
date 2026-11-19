@@ -236,11 +236,12 @@ def suggest_next(model: NGramModel, context: list[str], k: int = 3) -> list[tupl
 
 
 def generate(model: NGramModel, context: list[str], max_words: int = 20, strategy: str = "greedy",
-             temperature: float = 1.0, seed: int | None = None, stop_at_sentence_end: bool = True) -> list[str]:
+             temperature: float = 0.7, top_k: int = 5, seed: int | None = None,
+             stop_at_sentence_end: bool = True) -> list[str]:
     """Continue `context` word by word.
 
     strategy="greedy" always takes the most likely word; "sample" draws from the
-    distribution (sharpened or flattened by `temperature`). A no-repeat-n-gram guard
+    `top_k` most likely words (sharpened or flattened by `temperature`). A no-repeat-n-gram guard
     stops greedy decoding from looping on the same phrase.
     """
     import random
@@ -261,7 +262,7 @@ def generate(model: NGramModel, context: list[str], max_words: int = 20, strateg
         if strategy == "greedy":
             word = max(dist, key=lambda w: (dist[w], w))
         else:
-            words = sorted(dist)
+            words = sorted(dist, key=lambda w: (-dist[w], w))[:max(top_k, 1)]
             weights = [dist[w] ** (1.0 / max(temperature, 1e-6)) for w in words]
             word = rng.choices(words, weights=weights, k=1)[0]
         if word == EOS:
