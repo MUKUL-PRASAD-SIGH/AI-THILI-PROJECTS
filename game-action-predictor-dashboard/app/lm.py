@@ -209,7 +209,7 @@ class ActionLM:
             torch.nn.utils.clip_grad_norm_(self.model.parameters(), 1.0)
             optimizer.step()
             scheduler.step()
-            recent.append(float(loss))
+            recent.append(loss.item())
             if step % eval_every == 0 or step == steps:
                 val = self.validation_loss(val_possessions) if val_possessions is not None else None
                 history.append({"step": step, "loss": float(np.mean(recent)), "val_loss": val,
