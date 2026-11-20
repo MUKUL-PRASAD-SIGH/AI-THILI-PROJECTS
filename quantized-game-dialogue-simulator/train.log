@@ -1,0 +1,15 @@
+GPT: 824,320 parameters, 4 layers, 4 heads, d=128, context 128; 300,323 training characters
+step     0  val loss 4.060  (0s)  *best
+step   250  val loss 1.777  (138s)  *best
+step   500  val loss 1.023  (260s)  *best
+step   750  val loss 0.531  (386s)  *best
+step  1000  val loss 0.338  (509s)  *best
+step  1250  val loss 0.260  (633s)  *best
+step  1500  val loss 0.227  (755s)  *best
+step  1750  val loss 0.208  (883s)  *best
+step  2000  val loss 0.191  (1027s)  *best
+step  2250  val loss 0.184  (1164s)  *best
+step  2500  val loss 0.176  (1303s)  *best
+step  2750  val loss 0.173  (1439s)  *best
+step  3000  val loss 0.171  (1570s)  *best
+saved models/gpt_fp32.pt (best val loss 0.171)
