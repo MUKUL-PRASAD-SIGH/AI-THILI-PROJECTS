@@ -155,3 +155,34 @@ class GPT(nn.Module):
             loss = F.cross_entropy(logits.view(-1, logits.size(-1)), targets.view(-1),
                                    ignore_index=-1)
         return logits, loss
+
+    @torch.no_grad()
+    def generate(self, idx: torch.Tensor, max_new_tokens: int, temperature: float = 0.8,
+                 top_k: int | None = 40, stop_id: int | None = None,
+                 generator: torch.Generator | None = None) -> torch.Tensor:
+        """Sample one token at a time, feeding each back in as input.
+
+        idx: (batch, time) prompt ids. Sequences that produce ``stop_id`` are
+        padded with it afterwards; generation ends early once all have stopped.
+        """
+        self.eval()
+        done = torch.zeros(idx.size(0), dtype=torch.bool, device=idx.device)
+        for _ in range(max_new_tokens):
+            context = idx[:, -self.cfg.block_size:]          # crop to what the model can see
+            logits = self(context)[0][:, -1, :]
+            if temperature <= 0:                             # greedy
+                nxt = logits.argmax(dim=-1, keepdim=True)
+            else:
+                logits = logits / temperature
+                if top_k:
+                    kth = torch.topk(logits, min(top_k, logits.size(-1))).values[:, [-1]]
+                    logits = logits.masked_fill(logits < kth, float("-inf"))
+                probs = torch.softmax(logits, dim=-1)
+                nxt = torch.multinomial(probs, 1, generator=generator)
+            if stop_id is not None:
+                nxt = torch.where(done.unsqueeze(1), torch.full_like(nxt, stop_id), nxt)
+                done |= nxt.squeeze(1) == stop_id
+            idx = torch.cat([idx, nxt], dim=1)
+            if stop_id is not None and bool(done.all()):
+                break
+        return idx
