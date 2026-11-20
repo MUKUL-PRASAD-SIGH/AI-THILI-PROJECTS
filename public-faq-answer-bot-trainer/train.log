@@ -1,16 +1,24 @@
-60 FAQs: 120 training questions, 60 held-out paraphrases
+60 FAQs: 180 training questions, 60 held-out paraphrases
 LoRA r=16 alpha=32.0 on 48 layers: 2,359,296 trainable of 126,799,104 parameters (1.86%)
 epoch 0  held-out loss 3.138 (pre-trained model, adapter is zero)
-epoch  1  train loss 3.091  held-out loss 2.364  (84s)  *best
-epoch  2  train loss 2.343  held-out loss 1.742  (173s)  *best
-epoch  3  train loss 1.686  held-out loss 1.198  (261s)  *best
-epoch  4  train loss 1.247  held-out loss 0.855  (342s)  *best
-epoch  5  train loss 0.910  held-out loss 0.598  (410s)  *best
-epoch  6  train loss 0.660  held-out loss 0.434  (480s)  *best
-epoch  7  train loss 0.496  held-out loss 0.335  (548s)  *best
-epoch  8  train loss 0.379  held-out loss 0.270  (611s)  *best
-epoch  9  train loss 0.314  held-out loss 0.223  (676s)  *best
-epoch 10  train loss 0.253  held-out loss 0.209  (739s)  *best
-epoch 11  train loss 0.224  held-out loss 0.200  (803s)  *best
-epoch 12  train loss 0.219  held-out loss 0.199  (868s)  *best
+epoch  1  train loss 2.900  held-out loss 2.085  (88s)  *best
+epoch  2  train loss 1.811  held-out loss 1.028  (175s)  *best
+epoch  3  train loss 0.949  held-out loss 0.476  (259s)  *best
+epoch  4  train loss 0.465  held-out loss 0.227  (345s)  *best
+epoch  5  train loss 0.274  held-out loss 0.173  (424s)  *best
+epoch  6  train loss 0.191  held-out loss 0.133  (507s)  *best
+epoch  7  train loss 0.115  held-out loss 0.104  (596s)  *best
+epoch  8  train loss 0.107  held-out loss 0.091  (674s)  *best
+epoch  9  train loss 0.064  held-out loss 0.070  (758s)  *best
+epoch 10  train loss 0.044  held-out loss 0.065  (842s)  *best
+epoch 11  train loss 0.025  held-out loss 0.060  (936s)  *best
+epoch 12  train loss 0.017  held-out loss 0.057  (1021s)  *best
+epoch 13  train loss 0.012  held-out loss 0.047  (1104s)  *best
+epoch 14  train loss 0.009  held-out loss 0.046  (1186s)  *best
+epoch 15  train loss 0.006  held-out loss 0.047  (1266s)
+epoch 16  train loss 0.007  held-out loss 0.046  (1350s)  *best
+epoch 17  train loss 0.007  held-out loss 0.046  (1435s)
+epoch 18  train loss 0.005  held-out loss 0.046  (1514s)  *best
+epoch 19  train loss 0.004  held-out loss 0.045  (1596s)  *best
+epoch 20  train loss 0.006  held-out loss 0.045  (1679s)  *best
 saved adapter to C:\Users\Mukul Prasad\Desktop\PROJECTS\AI-THILI-PROJECTS-wt\public-faq-answer-bot-trainer\public-faq-answer-bot-trainer\models\adapter

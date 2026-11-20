@@ -24,9 +24,9 @@ IGNORE = -100
 
 @dataclass
 class TrainConfig:
-    epochs: int = 12
+    epochs: int = 20
     batch_size: int = 8
-    lr: float = 1e-3
+    lr: float = 2e-3
     weight_decay: float = 0.0
     warmup_frac: float = 0.06
     max_len: int = 128

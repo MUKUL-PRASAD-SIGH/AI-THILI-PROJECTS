@@ -114,14 +114,14 @@ def cmd_sweep(args) -> int:
     attn = ["attn.c_attn", "attn.c_proj"]
     every = lora.LoRAConfig().target_modules
     grid = [
-        ("r=1, attention", lora.LoRAConfig(r=1, alpha=2, target_modules=attn)),
-        ("r=4, attention", lora.LoRAConfig(r=4, alpha=8, target_modules=attn)),
-        ("r=16, attention", lora.LoRAConfig(r=16, alpha=32, target_modules=attn)),
+        ("r=1, attention only", lora.LoRAConfig(r=1, alpha=2, target_modules=attn)),
+        ("r=16, attention only", lora.LoRAConfig(r=16, alpha=32, target_modules=attn)),
         ("r=4, all layers", lora.LoRAConfig(r=4, alpha=8, target_modules=every)),
         ("r=16, all layers", lora.LoRAConfig(r=16, alpha=32, target_modules=every)),
-        ("r=16, all, alpha=16", lora.LoRAConfig(r=16, alpha=16, target_modules=every)),
-        ("r=64, all layers", lora.LoRAConfig(r=64, alpha=128, target_modules=every)),
+        ("r=16, all layers, alpha=16", lora.LoRAConfig(r=16, alpha=16, target_modules=every)),
     ]
+    if args.only:
+        grid = [g for g in grid if any(o in g[0] for o in args.only)]
     rows = []
     for label, lcfg in grid:
         print(f"\n=== {label}")
@@ -153,9 +153,9 @@ def build_parser() -> argparse.ArgumentParser:
 
     t = sub.add_parser("train", help="LoRA fine-tune the base model on the FAQ dataset")
     t.add_argument("--data", default=str(core.DEFAULT_DATA))
-    t.add_argument("--epochs", type=int, default=12)
+    t.add_argument("--epochs", type=int, default=20)
     t.add_argument("--batch-size", type=int, default=8)
-    t.add_argument("--lr", type=float, default=1e-3)
+    t.add_argument("--lr", type=float, default=2e-3)
     t.add_argument("--r", type=int, default=16)
     t.add_argument("--alpha", type=float, default=32.0)
     t.add_argument("--dropout", type=float, default=0.05)
@@ -181,8 +181,9 @@ def build_parser() -> argparse.ArgumentParser:
     m.set_defaults(func=cmd_merge)
 
     s = sub.add_parser("sweep", help="compare LoRA ranks, alpha and target layers")
-    s.add_argument("--epochs", type=int, default=12)
-    s.add_argument("--lr", type=float, default=1e-3)
+    s.add_argument("--epochs", type=int, default=8, help="kept short: every config trains from scratch")
+    s.add_argument("--only", nargs="*", help="run only configs whose label contains one of these")
+    s.add_argument("--lr", type=float, default=2e-3)
     s.set_defaults(func=cmd_sweep)
     return p
 

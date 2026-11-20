@@ -1,0 +1,103 @@
+{
+  "epochs": [
+    {
+      "epoch": 1,
+      "train_loss": 3.0906964619954427,
+      "val_loss": 2.3644639489083192,
+      "seconds": 84.1
+    },
+    {
+      "epoch": 2,
+      "train_loss": 2.3430144627889,
+      "val_loss": 1.742009603983912,
+      "seconds": 172.6
+    },
+    {
+      "epoch": 3,
+      "train_loss": 1.6857481797536213,
+      "val_loss": 1.1983967912485576,
+      "seconds": 261.4
+    },
+    {
+      "epoch": 4,
+      "train_loss": 1.2466912825902303,
+      "val_loss": 0.8547505855761557,
+      "seconds": 341.8
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.9101704200108846,
+      "val_loss": 0.5982112373840158,
+      "seconds": 410.3
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.6598163604736328,
+      "val_loss": 0.4343093762454117,
+      "seconds": 480.5
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.4958249986171722,
+      "val_loss": 0.33476600777116733,
+      "seconds": 547.8
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.3793887217839559,
+      "val_loss": 0.26951551134658785,
+      "seconds": 611.5
+    },
+    {
+      "epoch": 9,
+      "train_loss": 0.31439948081970215,
+      "val_loss": 0.22279502539468335,
+      "seconds": 676.4
+    },
+    {
+      "epoch": 10,
+      "train_loss": 0.25304685135682425,
+      "val_loss": 0.208892585901511,
+      "seconds": 739.3
+    },
+    {
+      "epoch": 11,
+      "train_loss": 0.2241951197385788,
+      "val_loss": 0.20037773893029756,
+      "seconds": 803.4
+    },
+    {
+      "epoch": 12,
+      "train_loss": 0.21899257004261016,
+      "val_loss": 0.19910268950106794,
+      "seconds": 867.9
+    }
+  ],
+  "trainable_params": 2359296,
+  "total_params": 126799104,
+  "lora_layers": 48,
+  "config": {
+    "epochs": 12,
+    "batch_size": 8,
+    "lr": 0.001,
+    "weight_decay": 0.0,
+    "warmup_frac": 0.06,
+    "max_len": 128,
+    "seed": 0,
+    "lora": {
+      "r": 16,
+      "alpha": 32.0,
+      "dropout": 0.05,
+      "target_modules": [
+        "attn.c_attn",
+        "attn.c_proj",
+        "mlp.c_fc",
+        "mlp.c_proj"
+      ]
+    }
+  },
+  "initial_val_loss": 3.1381228305546167,
+  "best_val_loss": 0.19910268950106794,
+  "best_epoch": 12,
+  "train_seconds": 868.0
+}

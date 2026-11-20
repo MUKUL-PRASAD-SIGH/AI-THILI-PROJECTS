@@ -129,8 +129,8 @@ with train_tab:
     c1, c2, c3, c4 = st.columns(4)
     r = c1.select_slider("Rank r", [1, 2, 4, 8, 16, 32, 64], value=16)
     alpha = c2.select_slider("Alpha", [1, 2, 4, 8, 16, 32, 64, 128], value=32)
-    epochs = c3.slider("Epochs", 1, 30, 12)
-    lr = c4.select_slider("Learning rate", [1e-4, 3e-4, 1e-3, 3e-3], value=1e-3, format_func=lambda x: f"{x:g}")
+    epochs = c3.slider("Epochs", 1, 30, 20)
+    lr = c4.select_slider("Learning rate", [1e-4, 3e-4, 1e-3, 2e-3, 3e-3], value=2e-3, format_func=lambda x: f"{x:g}")
     targets = st.multiselect("Layers to adapt", lora.LoRAConfig().target_modules,
                              default=lora.LoRAConfig().target_modules)
     current = llm.adapter_dir() / "history.json"
