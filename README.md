@@ -6,3 +6,4 @@ Each project lives in its own folder and is developed on its own branch.
 | Project | Branch | Folder |
 |---|---|---|
 | Support Response Generator (n-gram next-word suggester) | `support-response-generator` | `support-response-generator/` |
+| AI Product Describer (GPT trained from scratch on product texts) | `ai-product-describer` | `ai-product-describer/` |

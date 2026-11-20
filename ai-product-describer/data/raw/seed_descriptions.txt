@@ -1,0 +1,104 @@
+# Hand-written listings copied from a small candle shop's product pages.
+# Records are separated by a line containing only ---.
+# They are deliberately left messy (HTML, prices, shouting, smart quotes);
+# app/corpus.py cleans them.
+
+Name: Lavender Fields
+Notes: lavender, vanilla
+Size: 8 oz
+<p>Our <b>Lavender Fields</b> candle smells like a summer walk through purple rows of blooms. Soft vanilla rounds out the herbal lavender so it never feels sharp. Hand-poured in small batches with natural soy wax and a cotton wick.</p> Only $24.99!!!
+---
+Name: Midnight Fig
+Notes: black fig, cedarwood
+Size: 10 oz
+Ripe black fig meets dry cedarwood in this moody, grown-up candle.   It is rich without being sweet, and it fills a living room in under an hour.  Poured into a smoky amber glass jar that looks beautiful long after the last burn.
+---
+Name: Sea Salt Morning
+Notes: sea salt, driftwood, lemon
+Size: 6 oz
+Bright lemon, crisp sea salt and sun-bleached driftwood come together like an open window by the coast. A clean, airy scent for kitchens and bathrooms. SHOP NOW — limited stock!
+---
+Name: Cinnamon Hearth
+Notes: cinnamon, clove, orange peel
+Size: 12 oz
+Warm cinnamon and clove curl around a twist of candied orange peel. It’s the smell of a kitchen on a snowy afternoon. Our coconut-soy blend gives a slow, even burn of up to 70 hours.
+---
+Name: Rose & Oud
+Notes: rose, oud
+Size: 8 oz
+A velvet rose softened by deep, resinous oud. Romantic, a little mysterious, and made for long evenings. <br>Price: $32
+---
+Name: Green Tea Garden
+Notes: green tea, mint
+Size: 6 oz
+Fresh green tea leaves and a cool breath of mint make this our calmest candle. Light it while you read, stretch or work from home. Burns cleanly for about 35 hours.
+---
+Name: Honey Oat Milk
+Notes: honey, oat milk, almond
+Size: 8 oz
+Creamy oat milk, golden honey and toasted almond. Cozy, gentle and sweet in the best way. Poured in a reusable ceramic tumbler.
+---
+Name: Pine Cabin
+Notes: pine, smoked birch
+Size: 14 oz
+Fresh-cut pine and smoked birch bring the cabin to you. A woodsy, crackling scent that makes any room feel like a weekend away. Two cotton wicks throw the fragrance across large spaces, with up to 80 hours of burn time.
+---
+Name: Citrus Grove
+Notes: grapefruit, bergamot, basil
+Size: 8 oz
+Zesty pink grapefruit and bergamot, lifted by a green snap of basil. Energizing and uplifting — the perfect desk candle for slow Monday mornings!!!
+---
+Name: Amber Nights
+Notes: amber, sandalwood, tonka bean
+Size: 10 oz
+Glowing amber layered over creamy sandalwood and sweet tonka bean. Warm, sensual and deeply relaxing. Each candle is hand-poured and cured for two weeks so the scent throws evenly from the first light.
+---
+Name: Lavender Fields
+Notes: lavender, vanilla
+Size: 8 oz
+<p>Our <b>Lavender Fields</b> candle smells like a summer walk through purple rows of blooms. Soft vanilla rounds out the herbal lavender so it never feels sharp. Hand-poured in small batches with natural soy wax and a cotton wick.</p> Only $24.99!!!
+---
+Name: Coffee House
+Notes: espresso, brown sugar
+Size: 6 oz
+Dark roasted espresso with a sprinkle of brown sugar. Smells exactly like your favorite corner café. A must for coffee lovers.
+---
+Name: Eucalyptus Spa
+Notes: eucalyptus, spearmint
+Size: 8 oz
+Cooling eucalyptus and spearmint turn your bathroom into a spa. Clear the air after a long day and breathe a little deeper. Made with clean-burning soy wax.
+---
+Name: Pumpkin Patch
+Notes: pumpkin, nutmeg, maple
+Size: 12 oz
+Spiced pumpkin, a pinch of nutmeg and a drizzle of maple syrup. Autumn in a jar. Light it on the first cool evening of the year.
+---
+Name: White Jasmine
+Notes: jasmine, white musk
+Size: 8 oz
+Delicate night-blooming jasmine resting on soft white musk. Floral, elegant and clean. A lovely gift for weddings, birthdays and housewarmings.
+---
+Name: Tobacco Leaf
+Notes: tobacco leaf, leather, vanilla
+Size: 10 oz
+Sweet pipe tobacco, worn leather and a whisper of vanilla. Like an old library with a crackling fire. Housed in a matte black glass vessel with a wooden lid.
+---
+Name: Strawberry Fields
+Notes: strawberry, rhubarb
+Size: 4 oz
+Juicy strawberries and tart rhubarb straight from the farmers market. Playful and bright. Our travel-size tin burns for around 25 hours.
+---
+Name:   Cedar & Sage
+Notes: cedarwood, sage
+Size: 8 oz
+Grounding cedarwood and dried white sage.   Earthy, calm and quietly herbal.   Ideal for a reset after a hectic week.
+---
+Name: Coconut Lime
+Notes: coconut, lime
+Size: 6 oz
+Creamy coconut and a squeeze of fresh lime. Close your eyes and you're on a beach hammock. Vegan, cruelty-free and poured by hand.
+---
+Name: Snowy Peppermint
+Notes: peppermint, vanilla bean
+Size: 12 oz
+Crisp peppermint swirled with vanilla bean, like a candy cane by the tree. Festive, sweet and cheerful. Get yours before the holidays — they sell out every year!
