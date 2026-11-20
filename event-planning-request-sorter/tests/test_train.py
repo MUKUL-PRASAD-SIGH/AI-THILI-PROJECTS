@@ -27,3 +27,17 @@ def test_trainer_fine_tunes_and_saves(tiny_trained):
     assert not (out / "_trainer").exists()
     pred = Sorter(out, device="cpu").classify("note 99, please help with photos")
     assert pred.label == "photo_video"
+
+
+def test_freeze_lower_layers_keeps_top_block_trainable(tiny_base):
+    from app.train import freeze_lower_layers
+
+    model, _ = build_model_and_tokenizer(tiny_base)
+    total = sum(p.numel() for p in model.parameters())
+    assert freeze_lower_layers(model, 0) == total
+    trainable = freeze_lower_layers(model, 6)  # more than the 2 blocks the tiny model has
+    blocks = model.transformer.h
+    assert not any(p.requires_grad for p in blocks[0].parameters())
+    assert all(p.requires_grad for p in blocks[-1].parameters())
+    assert model.transformer.wte.weight.requires_grad and not model.transformer.wpe.weight.requires_grad
+    assert 0 < trainable < total

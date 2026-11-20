@@ -142,7 +142,8 @@ def cmd_train(args) -> int:
     if args.with_corrections:
         print(f"adding {len(extra)} corrected requests to the training data")
     train(base=args.base_model, out_dir=args.model_dir, epochs=args.epochs, lr=args.lr,
-          batch_size=args.batch_size, device=args.device, extra_examples=extra)
+          batch_size=args.batch_size, device=args.device, extra_examples=extra,
+          freeze_layers=args.freeze_layers, optim=args.optim)
     return 0
 
 
@@ -170,6 +171,10 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--epochs", type=float, default=10)
     p.add_argument("--lr", type=float, default=5e-5)
     p.add_argument("--batch-size", type=int, default=8)
+    p.add_argument("--freeze-layers", type=int, default=6,
+                   help="freeze the lowest N GPT-2 blocks to save memory (0 = train all)")
+    p.add_argument("--optim", default="adamw_torch", choices=["adamw_torch", "adafactor"],
+                   help="adafactor uses much less memory than AdamW")
     p.add_argument("--with-corrections", action="store_true",
                    help="also train on corrections you saved")
 
