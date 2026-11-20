@@ -106,8 +106,27 @@ def evaluate(model, tokenizer, examples: list[Example], device: str) -> dict:
             "errors": errors}
 
 
+def freeze_lower_layers(model, n: int) -> int:
+    """Freeze the position embeddings and the first ``n`` transformer blocks.
+
+    Frozen weights need no gradients or optimizer state, which roughly halves
+    the memory of fine-tuning GPT-2. The token embeddings (which hold the new
+    category tokens) and the upper blocks keep learning. At least the top block
+    always stays trainable, so ``n`` larger than the model is capped. Returns the
+    number of trainable parameters."""
+    body = getattr(model, "transformer", None)
+    if n > 0 and body is not None and hasattr(body, "h"):
+        n = min(n, len(body.h) - 1)
+        body.wpe.weight.requires_grad_(False)
+        for block in body.h[:n]:
+            for p in block.parameters():
+                p.requires_grad_(False)
+    return sum(p.numel() for p in model.parameters() if p.requires_grad)
+
+
 def train(base: str | None = None, out_dir: str | Path | None = None, epochs: float = 10,
           lr: float = 5e-5, batch_size: int = 8, seed: int = 42, device: str | None = None,
+          freeze_layers: int = 6, optim: str = "adamw_torch",
           extra_examples: list[Example] | None = None, examples: list[Example] | None = None,
           log=print) -> dict:
     set_seed(seed)
@@ -124,6 +143,11 @@ def train(base: str | None = None, out_dir: str | Path | None = None, epochs: fl
     before = evaluate(model, tok, test_ex, device)
     log(f"before fine-tuning: accuracy {before['accuracy']:.3f} (chance is {1 / len(LABELS):.3f})")
 
+    trainable = freeze_lower_layers(model, freeze_layers)
+    total = sum(p.numel() for p in model.parameters())
+    log(f"model: {total / 1e6:.1f}M parameters, {trainable / 1e6:.1f}M trainable "
+        f"(lowest {freeze_layers} blocks frozen), optimizer {optim}")
+
     preprocess, compute = make_metric_fns(label_token_ids(tok))
     args = TrainingArguments(
         output_dir=str(out / "_trainer"),
@@ -137,6 +161,7 @@ def train(base: str | None = None, out_dir: str | Path | None = None, epochs: fl
         eval_strategy="epoch",
         logging_strategy="epoch",
         save_strategy="no",
+        optim=optim,
         report_to=[],
         seed=seed,
         use_cpu=device == "cpu",
@@ -167,6 +192,8 @@ def train(base: str | None = None, out_dir: str | Path | None = None, epochs: fl
     tok.save_pretrained(str(out))
     after = evaluate(model, tok, test_ex, device)
     metrics = {"base_model": base or model.config.name_or_path, "epochs": epochs, "lr": lr,
+               "freeze_layers": freeze_layers, "optim": optim,
+               "trainable_params": trainable, "total_params": total,
                "train_size": len(train_ex), "test_size": len(test_ex), "seconds": seconds,
                "before": {k: before[k] for k in ("accuracy", "macro_f1", "mean_confidence")},
                "after": after, "history": history}
