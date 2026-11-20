@@ -1,0 +1,27 @@
+name: quantized-game-dialogue-simulator tests
+
+on:
+  push:
+    paths:
+      - "quantized-game-dialogue-simulator/**"
+      - ".github/workflows/quantized-game-dialogue-simulator.yml"
+  pull_request:
+    paths:
+      - "quantized-game-dialogue-simulator/**"
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: quantized-game-dialogue-simulator
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install CPU-only PyTorch
+        run: pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - run: pip install -r requirements.txt
+      - run: pytest -m "not slow"
