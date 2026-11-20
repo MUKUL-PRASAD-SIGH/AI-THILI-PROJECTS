@@ -1,0 +1,6 @@
+numpy>=1.24
+torch>=2.2
+transformers>=4.40,<5
+accelerate>=0.26
+python-dotenv>=1.0
+pytest>=8.0

@@ -1,0 +1,27 @@
+name: event-planning-request-sorter tests
+
+on:
+  push:
+    paths:
+      - "event-planning-request-sorter/**"
+      - ".github/workflows/event-planning-request-sorter.yml"
+  pull_request:
+    paths:
+      - "event-planning-request-sorter/**"
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: event-planning-request-sorter
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install CPU-only PyTorch
+        run: pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - run: pip install -r requirements.txt
+      - run: pytest
