@@ -1,0 +1,136 @@
+text,label
+"Do you have any venues that can hold 150 guests for a wedding in June?",venue_inquiry
+"Is the rooftop terrace available on the evening of March 14th?",venue_inquiry
+"We're looking for a barn or farm venue within an hour of the city for our reception.",venue_inquiry
+"What's the capacity of the main ballroom, seated and standing?",venue_inquiry
+"Can you recommend a small private room for a 30-person retirement dinner?",venue_inquiry
+"Does the lakeside venue have wheelchair access and parking on site?",venue_inquiry
+"I'd like to book a site visit to the garden venue next weekend.",venue_inquiry
+"Are there any indoor backup spaces at the vineyard in case it rains?",venue_inquiry
+"Looking for a conference hall with breakout rooms for a two-day company offsite.",venue_inquiry
+"Is the warehouse loft still free for our product launch on the 2nd of October?",venue_inquiry
+"Can we hold the ceremony and the reception at the same location?",venue_inquiry
+"We need a beach venue for about 80 people, any options in August?",venue_inquiry
+"What time do we have to be out of the hall by at the end of the night?",venue_inquiry
+"Does the hotel ballroom allow outside vendors or only their own?",venue_inquiry
+"Hi! Hunting for a quirky venue for a 40th birthday, maybe a museum or gallery?",venue_inquiry
+"Could you hold the courtyard for us while we decide? We'll confirm by Friday.",venue_inquiry
+"Is there a venue near the airport that works for a corporate gala of 300?",venue_inquiry
+"Do you know any churches or chapels that host interfaith ceremonies?",venue_inquiry
+"Can we get a menu with vegetarian and vegan options for 120 guests?",catering_request
+"We'd like a tasting session for the wedding menu before we decide.",catering_request
+"Three of our guests have severe nut allergies, how will the kitchen handle that?",catering_request
+"Can you do a buffet instead of a plated dinner?",catering_request
+"Please add a late-night pizza station to the reception.",catering_request
+"We want a signature cocktail and an open bar for four hours.",catering_request
+"Is it possible to have halal and kosher meals prepared separately?",catering_request
+"Could we get canapes and drinks for a 90-minute networking reception?",catering_request
+"Our CEO is gluten free, please make sure the lunch has options for her.",catering_request
+"Can the caterer supply the wedding cake, or do we need a separate baker?",catering_request
+"We need breakfast, lunch and two coffee breaks for each day of the conference.",catering_request
+"Do you offer a kids' menu for the under-tens at the party?",catering_request
+"Can we swap the salmon main for chicken? A few guests don't eat fish.",catering_request
+"We'd love a dessert table with macarons and a chocolate fountain.",catering_request
+"How many bartenders and servers come with the catering package?",catering_request
+"Please confirm the final headcount for meals is 142, not 150.",catering_request
+"Can we bring our own wine and pay corkage instead?",catering_request
+"We'd like a family-style sharing menu with Mediterranean food.",catering_request
+"We want the tables decorated in sage green and gold with lots of candles.",decor_request
+"Can you source fairy lights and draping for the barn ceiling?",decor_request
+"Our theme is 1920s Great Gatsby, can you help with props and centrepieces?",decor_request
+"I'd like fresh peonies for the bridal bouquet and the table arrangements.",decor_request
+"Could we get a balloon arch in the company colours at the entrance?",decor_request
+"Please quote for linen upgrades: ivory tablecloths and blush napkins.",decor_request
+"We need a flower wall as a photo backdrop near the bar.",decor_request
+"Can the stage be dressed with greenery and neon signage with our logo?",decor_request
+"Is it possible to hang lanterns across the courtyard for an evening look?",decor_request
+"We'd like a winter wonderland theme for the holiday party.",decor_request
+"Can you arrange personalised place cards and a seating chart sign?",decor_request
+"Please remove the red from the colour scheme and go with navy and silver.",decor_request
+"We want minimalist decor, just eucalyptus runners and white candles.",decor_request
+"Can you set up a lounge area with velvet sofas and rugs?",decor_request
+"Could we have a floral arch for the ceremony aisle?",decor_request
+"For the baby shower we'd love pastel decorations and a dessert table backdrop.",decor_request
+"Are there any restrictions on candles or confetti at the venue we should plan decor around?",decor_request
+"Can you book a jazz trio for the cocktail hour?",entertainment_booking
+"We'd like a DJ from 8pm until midnight, with a lighting rig.",entertainment_booking
+"Is the band you recommended available for our date in September?",entertainment_booking
+"Could you find a magician to entertain kids at the party?",entertainment_booking
+"We want a string quartet for the ceremony and a DJ for the reception.",entertainment_booking
+"Please book a keynote speaker on leadership for our sales conference.",entertainment_booking
+"Can we have a photo booth with props for the guests?",entertainment_booking
+"Do you know any comedians who do clean sets for corporate events?",entertainment_booking
+"We'd love a fireworks show at the end of the night if the venue allows it.",entertainment_booking
+"Can you arrange a mariachi band for my parents' anniversary?",entertainment_booking
+"Our guests would enjoy a casino night with dealers and tables.",entertainment_booking
+"Please hire an MC who can keep the awards ceremony on schedule.",entertainment_booking
+"Could we book a caricature artist for the company picnic?",entertainment_booking
+"Is it possible to have a live painter capturing the reception?",entertainment_booking
+"We need a sound system and a microphone for speeches.",entertainment_booking
+"Can the DJ play our playlist for the first dance and avoid certain songs?",entertainment_booking
+"Book a bouncy castle and face painter for my son's 6th birthday please.",entertainment_booking
+"We'd like a team-building activity, maybe an escape room or cooking class.",entertainment_booking
+"Do you have photographers available for a full-day wedding on May 20th?",photo_video
+"We'd like a videographer to make a highlights reel of the conference.",photo_video
+"Can the photographer do a 30-minute engagement shoot before the wedding?",photo_video
+"How long after the event will we receive the edited photos?",photo_video
+"Please arrange headshots for all 40 attendees during the retreat.",photo_video
+"Can we get drone footage of the venue and the ceremony?",photo_video
+"We want candid shots only, no long posed group sessions.",photo_video
+"Is a second shooter included in the photography package?",photo_video
+"Can you livestream the ceremony for relatives who can't travel?",photo_video
+"We need product photos taken at the launch for our press kit.",photo_video
+"Will the videographer capture the speeches with good audio?",photo_video
+"Could the photographer stay an extra hour to cover the after-party?",photo_video
+"We'd like a printed photo album as well as the digital gallery.",photo_video
+"Please make sure the photographer gets a shot with my grandparents.",photo_video
+"Can we have a same-day edit video shown at the end of the reception?",photo_video
+"Do you provide an instant-print photographer for the gala?",photo_video
+"What do you charge for a 100-person corporate dinner, roughly?",budget_quote
+"Can you send a full quote with a breakdown of every cost?",budget_quote
+"Our total budget is $15,000, what can we realistically get for that?",budget_quote
+"Is a deposit required to hold the date, and how much is it?",budget_quote
+"Do you offer payment plans for weddings?",budget_quote
+"The quote came in higher than expected, where can we cut costs?",budget_quote
+"Are taxes and service charges included in the price you sent?",budget_quote
+"Please send the invoice to our accounts team and include the PO number.",budget_quote
+"How much extra would it cost to add 20 more guests?",budget_quote
+"Can you compare the price of the two venue packages side by side?",budget_quote
+"We need a cost estimate for the board by Thursday.",budget_quote
+"What is your fee for full planning versus day-of coordination?",budget_quote
+"Is there a discount for booking a Friday instead of a Saturday?",budget_quote
+"Our final payment was charged twice, can you check the billing?",budget_quote
+"Could you quote three options: basic, standard and premium?",budget_quote
+"How much does it cost to extend the event by one hour?",budget_quote
+"We need to move the wedding from June 8th to June 15th, is that possible?",schedule_change
+"Can we push the start of the dinner back by an hour?",schedule_change
+"Unfortunately we have to postpone the launch party until next quarter.",schedule_change
+"The keynote speaker's flight is delayed, can we swap the morning sessions?",schedule_change
+"We need to cancel the event entirely, what are the next steps?",schedule_change
+"Could the ceremony start at 3pm instead of 4pm to catch the light?",schedule_change
+"Please move the rehearsal dinner to Thursday night.",schedule_change
+"Our company retreat needs to shift from two days to three.",schedule_change
+"Is it too late to change the date of the gala to the following Saturday?",schedule_change
+"Because of the storm forecast we want to reschedule the outdoor picnic.",schedule_change
+"Can we shorten the conference to one day and drop the workshops?",schedule_change
+"The bride's sister is now arriving late, can we delay the photos?",schedule_change
+"We need to bring the event forward by a week, the client changed plans.",schedule_change
+"Please update the run-of-show: speeches now happen before dinner.",schedule_change
+"Can we split the party into two smaller events on different days?",schedule_change
+"We have to cancel the Saturday brunch but keep the rest of the weekend.",schedule_change
+"Can you arrange a shuttle bus from the hotel to the venue and back?",guest_logistics
+"We need a block of 25 hotel rooms near the venue for out-of-town guests.",guest_logistics
+"Please organise airport pickups for our speakers arriving on Tuesday.",guest_logistics
+"How should we handle parking for 200 cars at the festival?",guest_logistics
+"Can you send the invitations and track the RSVPs for us?",guest_logistics
+"Some guests use wheelchairs, can you arrange accessible transport?",guest_logistics
+"We'd like welcome bags waiting in each guest's hotel room.",guest_logistics
+"Please set up a registration desk with name badges at the entrance.",guest_logistics
+"Could you create a wedding website with travel and hotel info?",guest_logistics
+"We need a coat check and valet service for the gala.",guest_logistics
+"Can you book a vintage car to take the couple from the church?",guest_logistics
+"Our international guests need visa invitation letters, can you help?",guest_logistics
+"Please arrange a babysitting room so parents can enjoy the reception.",guest_logistics
+"We need signage directing guests from the car park to the ceremony.",guest_logistics
+"Could you manage the seating plan and table assignments from the RSVP list?",guest_logistics
+"Can you arrange a group dinner reservation for guests arriving the night before?",guest_logistics
