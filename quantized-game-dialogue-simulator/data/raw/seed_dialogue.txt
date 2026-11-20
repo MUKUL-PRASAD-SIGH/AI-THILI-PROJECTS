@@ -1,0 +1,107 @@
+# Hand-written seed exchanges for the town of Emberfall.
+# One exchange = a PLAYER line followed by one NPC reply. Blank lines separate exchanges.
+
+PLAYER: Good morning. Is the forge hot yet?
+BLACKSMITH: Hot as a dragon's yawn. Bring me iron and I'll make it sing.
+
+PLAYER: Can you fix my sword?
+BLACKSMITH: That edge is chewed like a goblin's bone. Leave it till dusk, ten silver.
+
+PLAYER: What is the best armour you sell?
+BLACKSMITH: Ridgeback plate. Heavy, but an ogre would break his club on it.
+
+PLAYER: Do you ever rest?
+BLACKSMITH: When the anvil rests, I rest. The anvil never rests.
+
+PLAYER: I found this strange ore in the mines.
+BLACKSMITH: Starsilver! Bring me three more chunks and I'll forge you a blade worth a kingdom.
+
+PLAYER: Got a room for the night?
+INNKEEPER: The corner room is free. Five copper, and breakfast if you wake before the rooster.
+
+PLAYER: What's the news around town?
+INNKEEPER: They say lights were seen over the Hollow Marsh again. Nobody sensible goes there at night.
+
+PLAYER: Pour me something strong.
+INNKEEPER: Ember ale it is. Careful, the last fellow sang to the fireplace till dawn.
+
+PLAYER: Who is the man in the hood?
+INNKEEPER: Pays in old coins and never gives a name. I don't ask, and neither should you.
+
+PLAYER: Is there any work for an adventurer?
+INNKEEPER: Check the notice board by the door. The miller is offering good coin for his missing cart.
+
+PLAYER: Can I pass through the gate?
+GUARD: State your business, traveller. The gate closes at sundown.
+
+PLAYER: Have you seen anything strange?
+GUARD: Wolves on the north road, bigger than any I've seen. Keep your torch lit.
+
+PLAYER: I'm looking for the captain.
+GUARD: Captain Rhoswen is at the watchtower. Don't waste her time.
+
+PLAYER: Why is the bridge closed?
+GUARD: Trolls under it again. Until someone clears them out, nobody crosses.
+
+PLAYER: Any trouble tonight?
+GUARD: Quiet so far. Quiet makes me nervous.
+
+PLAYER: What are you selling today?
+MERCHANT: Silk from the south, spices from the east, and a lantern that never goes out. For you, a fair price.
+
+PLAYER: That's too expensive.
+MERCHANT: Expensive? My friend, I am practically giving it away. Fine, fine, eight silver, and you ruin me.
+
+PLAYER: Do you buy old treasure?
+MERCHANT: Show me. Hmm, a goblin crown. Tarnished, but I could offer twelve silver.
+
+PLAYER: Where do you get your goods?
+MERCHANT: A merchant who answers that question soon has no goods to sell.
+
+PLAYER: I need healing.
+HEALER: Sit, sit. That wound is deep, but the willow salve will close it by morning.
+
+PLAYER: Do you have any potions?
+HEALER: Red for wounds, blue for poison, and green only if you are very brave.
+
+PLAYER: The sickness in the village is spreading.
+HEALER: Then I need moonpetal from the Whispering Woods. Bring me a handful and I can brew a cure.
+
+PLAYER: How did you learn to heal?
+HEALER: From my mother, and from many mistakes. Mostly the mistakes.
+
+PLAYER: Play me a song.
+BARD: Ah, a song of the Ember King, who lost his crown in a game of dice? Or something sadder?
+
+PLAYER: Do you know any legends?
+BARD: They say a dragon sleeps beneath Cinder Peak, dreaming of the town it will burn. Cheerful, isn't it?
+
+PLAYER: You're not a very good singer.
+BARD: And you are not a very good critic, yet here we both are.
+
+PLAYER: Will you write a song about me?
+BARD: Do something worth singing about first. Slay a troll, perhaps, or at least a large goose.
+
+PLAYER: You sent for me, Elder?
+ELDER: Yes. The shrine in the Hollow Marsh has gone dark. Relight its flame before the new moon.
+
+PLAYER: What is the shrine?
+ELDER: It keeps the marsh spirits sleeping. If they wake, Emberfall will not see another spring.
+
+PLAYER: I relit the shrine.
+ELDER: Then the town owes you its life. Take this amulet, it belonged to the first keeper of the flame.
+
+PLAYER: Why should I help you?
+ELDER: Because the road you walk ends here too, if the marsh rises.
+
+PLAYER: Can you take me across the river?
+FERRYMAN: Two copper to cross, three if you talk the whole way.
+
+PLAYER: Is the river safe?
+FERRYMAN: Safe as anything is. Keep your hands in the boat, the eels are hungry this season.
+
+PLAYER: Have you always worked the ferry?
+FERRYMAN: Forty years on this water. The river and I have an understanding.
+
+PLAYER: What lies on the other side?
+FERRYMAN: The Whispering Woods. Folk go in for herbs and come out with stories.
