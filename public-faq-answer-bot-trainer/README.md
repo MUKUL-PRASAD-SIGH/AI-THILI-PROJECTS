@@ -173,10 +173,13 @@ From [reports/merge_report.json](reports/merge_report.json):
 - **Administrator feedback:** answers are rated 1–5 in the app and logged to
   `models/feedback.jsonl`. The Feedback tab summarises ratings per model and lists low-rated
   answers to correct in the dataset before the next training run.
-- **LoRA configurations:** `python -m app.cli sweep` trains several rank, alpha and
-  target-layer settings with the same data, seed and epoch budget, and compares held-out
-  accuracy against trainable parameters and training time. Results are in
-  [reports/lora_sweep.md](reports/lora_sweep.md).
+- **LoRA configurations:** `python -m app.cli sweep` trains 5 settings (r=1 and r=16 on
+  attention only; r=4, r=16 and r=16 with alpha=16 on all layers) with the same data, seed
+  and 8-epoch budget. It compares held-out accuracy against trainable parameters and training
+  time and writes `reports/lora_sweep.md`, which the Evaluation tab then shows. It takes about
+  an hour on a laptop CPU and hasn't been run to completion yet. Use `--only "r=4"` to run a
+  subset. The one measured comparison so far is the first run against the final run described
+  above: same r=16 adapter, more data and training.
 
 ## Limitations
 
