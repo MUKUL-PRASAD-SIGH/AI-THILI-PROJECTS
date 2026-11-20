@@ -165,5 +165,15 @@ def train_lora(model, tokenizer, train_examples: list[core.Example], val_example
         lora.save_adapter(model, config.lora, out_dir, extra={
             "train": {k: v for k, v in config.to_dict().items() if k != "lora"},
             "best_val_loss": best[0], "best_epoch": history["best_epoch"], **(extra_meta or {})})
-        log(f"saved adapter to {out_dir}")
+        log(f"saved adapter to {_display(out_dir)}")
     return history
+
+
+def _display(path) -> str:
+    """Project-relative path for logs, so committed logs don't contain local folders."""
+    from app.storage import PROJECT_ROOT
+
+    try:
+        return Path(path).resolve().relative_to(PROJECT_ROOT).as_posix()
+    except ValueError:
+        return Path(path).name

@@ -21,4 +21,4 @@ epoch 17  train loss 0.007  held-out loss 0.046  (1435s)
 epoch 18  train loss 0.005  held-out loss 0.046  (1514s)  *best
 epoch 19  train loss 0.004  held-out loss 0.045  (1596s)  *best
 epoch 20  train loss 0.006  held-out loss 0.045  (1679s)  *best
-saved adapter to C:\Users\Mukul Prasad\Desktop\PROJECTS\AI-THILI-PROJECTS-wt\public-faq-answer-bot-trainer\public-faq-answer-bot-trainer\models\adapter
+saved adapter to models/adapter

@@ -11,7 +11,7 @@
     ],
     "n_faqs": 60,
     "n_departments": 10,
-    "model_evaluated": "adapter"
+    "model_evaluated": "merged"
   },
   "splits": {
     "Held-out paraphrases": [
@@ -36,7 +36,7 @@
         "exact": 0.55
       },
       {
-        "system": "LoRA GPT-2 (adapter)",
+        "system": "LoRA GPT-2 (merged)",
         "fact_recall": 0.8458333333333333,
         "all_facts": 0.7666666666666667,
         "relevant": 0.8333333333333334,
@@ -68,7 +68,7 @@
         "exact": 1.0
       },
       {
-        "system": "LoRA GPT-2 (adapter)",
+        "system": "LoRA GPT-2 (merged)",
         "fact_recall": 1.0,
         "all_facts": 1.0,
         "relevant": 1.0,

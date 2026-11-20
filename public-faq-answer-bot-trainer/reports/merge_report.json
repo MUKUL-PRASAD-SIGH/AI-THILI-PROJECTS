@@ -1,0 +1,16 @@
+{
+  "adapter_dir": "models/adapter",
+  "merged_dir": "models/merged",
+  "lora_layers_merged": 48,
+  "params_with_adapter": 126799104,
+  "params_merged": 124439808,
+  "lora_modules_left": 0,
+  "max_logit_diff": 0.0012664794921875,
+  "reload_max_logit_diff": 0.0,
+  "identical_answers": 60,
+  "n_checked": 60,
+  "sec_per_answer_adapter": 2.003,
+  "sec_per_answer_merged": 1.392,
+  "adapter_size_mb": 9.45,
+  "merged_size_mb": 502.6
+}

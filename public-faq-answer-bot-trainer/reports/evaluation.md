@@ -12,7 +12,7 @@ Metrics are explained in `app/evaluate.py`. *Held-out* questions are paraphrases
 |---|---|---|---|---|---|---|---|
 | GPT-2, no fine-tuning | 1.4% | 0.0% | 13.3% | 16.7% | 16.6% | 14.4% | 0.0% |
 | Word-overlap lookup | 58.8% | 55.0% | 55.0% | 41.7% | 63.2% | 62.2% | 55.0% |
-| LoRA GPT-2 (adapter) | 84.6% | 76.7% | 83.3% | 15.0% | 85.3% | 84.6% | 71.7% |
+| LoRA GPT-2 (merged) | 84.6% | 76.7% | 83.3% | 15.0% | 85.3% | 84.6% | 71.7% |
 
 ## Seen questions
 
@@ -20,7 +20,7 @@ Metrics are explained in `app/evaluate.py`. *Held-out* questions are paraphrases
 |---|---|---|---|---|---|---|---|
 | GPT-2, no fine-tuning | 1.0% | 0.0% | 15.0% | 15.0% | 16.2% | 14.3% | 0.0% |
 | Word-overlap lookup | 100.0% | 100.0% | 100.0% | 0.0% | 100.0% | 100.0% | 100.0% |
-| LoRA GPT-2 (adapter) | 100.0% | 100.0% | 100.0% | 0.0% | 100.0% | 100.0% | 100.0% |
+| LoRA GPT-2 (merged) | 100.0% | 100.0% | 100.0% | 0.0% | 100.0% | 100.0% | 100.0% |
 
 ## Held-out accuracy by department (LoRA model)
 
@@ -44,84 +44,84 @@ Metrics are explained in `app/evaluate.py`. *Held-out* questions are paraphrases
 - *Approved:* Renew online at riverton.gov/dmv up to 90 days before it expires, or visit the DMV office at 12 Elm Street. The renewal fee is $32.
 - *GPT-2, no fine-tuning:* The driver's licence is expiring. — missing online, 90 days, 12 Elm Street, $32
 - *Word-overlap lookup:* Renew online at riverton.gov/dmv up to 90 days before it expires, or visit the DMV office at 12 Elm Street. The renewal fee is $32. — all facts
-- *LoRA GPT-2 (adapter):* Renew online at riverton.gov/dmv up to 90 days before it expires, or visit the DMV office at 12 Elm Street. The renewal fee is $32. — all facts
+- *LoRA GPT-2 (merged):* Renew online at riverton.gov/dmv up to 90 days before it expires, or visit the DMV office at 12 Elm Street. The renewal fee is $32. — all facts
 
 **Q (Motor Vehicles):** What time does the motor vehicles office open?
 
 - *Approved:* The DMV office is open Monday to Friday from 8 am to 4:30 pm, and on Saturday from 9 am to noon.
 - *GPT-2, no fine-tuning:* The office opens at 7:30 a.m. on the first Monday of every month. — missing Monday to Friday, 8 am, 4:30 pm, Saturday
 - *Word-overlap lookup:* The DMV office is open Monday to Friday from 8 am to 4:30 pm, and on Saturday from 9 am to noon. — all facts
-- *LoRA GPT-2 (adapter):* The Motor Vehicle Office is open Monday to Friday from 8 am to 4:30 pm, and on Saturday from 9 am to noon. — all facts
+- *LoRA GPT-2 (merged):* The Motor Vehicle Office is open Monday to Friday from 8 am to 4:30 pm, and on Saturday from 9 am to noon. — all facts
 
 **Q (Water and Sewer):** What could cause an unusually large water bill?
 
 - *Approved:* A high bill is often caused by a leak, such as a running toilet. Check your meter with all taps off; if it still moves, you may have a leak. You can request a free leak check by calling 311.
 - *GPT-2, no fine-tuning:* The water bill is a major factor in the water bill for many people. The water bill is a major factor in the water bill for many people. — missing leak, toilet, meter, free leak check, 311
 - *Word-overlap lookup:* Water bills are sent every two months and are due 20 days after the bill date. A 5 percent late fee applies after that. — missing leak, toilet, meter, free leak check, 311
-- *LoRA GPT-2 (adapter):* A high bill is often caused by a leak, such as a running toilet. Check your meter with all taps off; if it still moves, you may have a leak. You can request a free leak check by calling 311. — all facts
+- *LoRA GPT-2 (merged):* A high bill is often caused by a leak, such as a running toilet. Check your meter with all taps off; if it still moves, you may have a leak. You can request a free leak check by calling 311. — all facts
 
 **Q (Water and Sewer):** Are there rules about using sprinklers?
 
 - *Approved:* From May to September, lawn watering is allowed only before 10 am or after 6 pm. Even-numbered addresses water on even dates and odd-numbered addresses on odd dates.
 - *GPT-2, no fine-tuning:* No, there are no rules about using sprinklers. — missing May to September, 10 am, 6 pm, even, odd
 - *Word-overlap lookup:* Call the 24-hour line at 555-0142. The city clears blockages in the public main for free; blockages in the pipe on your property are the owner's responsibility. — missing May to September, 10 am, 6 pm, even, odd
-- *LoRA GPT-2 (adapter):* From May to September, lawn watering is allowed only before 10 am or after 6 pm. Even-numbered addresses water on even dates and odd-numbered addresses on odd dates. — all facts
+- *LoRA GPT-2 (merged):* From May to September, lawn watering is allowed only before 10 am or after 6 pm. Even-numbered addresses water on even dates and odd-numbered addresses on odd dates. — all facts
 
 **Q (Waste and Recycling):** Who do I tell about a missed trash pickup?
 
 - *Approved:* Report a missed collection by calling 311 or at riverton.gov/trash by noon the next working day. A crew will return within 2 working days.
 - *GPT-2, no fine-tuning:* The City of Toronto has a trash pickup program. The City of Toronto has a trash pickup program. — missing 311, noon, 2 working days
 - *Word-overlap lookup:* Report potholes through 311 or the Riverton 311 app with the nearest address. Most potholes are filled within 5 working days. — missing noon, 2 working days
-- *LoRA GPT-2 (adapter):* Report a missed collection by calling 311 or at riverton.gov/trash by noon the next working day. A crew will return within 2 working days. — all facts
+- *LoRA GPT-2 (merged):* Report a missed collection by calling 311 or at riverton.gov/trash by noon the next working day. A crew will return within 2 working days. — all facts
 
 **Q (Property Tax):** Where do I pay property taxes?
 
 - *Approved:* Pay online at riverton.gov/tax, by mail with the payment slip, or in person at the Treasurer's Office in City Hall. Card payments have a 2.5 percent processing fee.
 - *GPT-2, no fine-tuning:* The City of Toronto collects property taxes from the City of Toronto. The City of Toronto collects property taxes from the City of Toronto. — missing online, mail, Treasurer's Office, 2.5 percent
 - *Word-overlap lookup:* Property taxes are paid in two instalments, due on March 31 and September 30. — missing online, mail, Treasurer's Office, 2.5 percent
-- *LoRA GPT-2 (adapter):* Pay online at riverton.gov/tax, by mail with the payment slip, or in person at the Treasurer's Office in City Hall. Card payments have a 2.5 percent processing fee. — all facts
+- *LoRA GPT-2 (merged):* Pay online at riverton.gov/tax, by mail with the payment slip, or in person at the Treasurer's Office in City Hall. Card payments have a 2.5 percent processing fee. — all facts
 
 **Q (Building Permits):** Can I build a deck without a permit?
 
 - *Approved:* Yes, a permit is required for any deck more than 30 inches above the ground or attached to the house.
 - *GPT-2, no fine-tuning:* No, you can't build a deck without a permit. — missing Yes, 30 inches, attached
 - *Word-overlap lookup:* Yes, a permit is required for any deck more than 30 inches above the ground or attached to the house. — all facts
-- *LoRA GPT-2 (adapter):* Yes, a permit is required for any deck more than 30 inches above the ground or attached to the house. — all facts
+- *LoRA GPT-2 (merged):* Yes, a permit is required for any deck more than 30 inches above the ground or attached to the house. — all facts
 
 **Q (Building Permits):** How tall can my fence be without a permit?
 
 - *Approved:* Fences up to 6 feet tall in back yards and 4 feet tall in front yards do not need a permit. Taller fences require one.
 - *GPT-2, no fine-tuning:* The City of Toronto has a permit for a fence that is at least 5 feet high. The City of Toronto has a permit for a fence that is at least 5 feet high. — missing 6 feet, 4 feet, front
 - *Word-overlap lookup:* Fences up to 6 feet tall in back yards and 4 feet tall in front yards do not need a permit. Taller fences require one. — all facts
-- *LoRA GPT-2 (adapter):* Fences up to 6 feet tall in back yards and 4 feet tall in front yards do not need a permit. Taller fences require one. — all facts
+- *LoRA GPT-2 (merged):* Fences up to 6 feet tall in back yards and 4 feet tall in front yards do not need a permit. Taller fences require one. — all facts
 
 **Q (Vital Records):** How fast are vital records processed?
 
 - *Approved:* In-person requests are usually ready the same day. Online and mail orders are processed within 7 business days plus mailing time.
 - *GPT-2, no fine-tuning:* The City of Toronto's system of record processing is designed to ensure that records are processed in a timely manner. The City of Toronto's system of record processing is designed to ensure that records are processed in a timely manner. — missing same day, 7 business days
 - *Word-overlap lookup:* Renew online at riverton.gov/dmv up to 90 days before it expires, or visit the DMV office at 12 Elm Street. The renewal fee is $32. — missing same day, 7 business days
-- *LoRA GPT-2 (adapter):* In-person requests are usually ready the same day. Online and mail orders are processed within 7 business days plus mailing time. — all facts
+- *LoRA GPT-2 (merged):* In-person requests are usually ready the same day. Online and mail orders are processed within 7 business days plus mailing time. — all facts
 
 **Q (Parks and Recreation):** Do dogs need to be leashed in parks?
 
 - *Approved:* Dogs are welcome in city parks on a leash no longer than 6 feet. Off-leash play is allowed only in the fenced dog park at Oak Hill.
 - *GPT-2, no fine-tuning:* Yes, dogs need to be leashed in parks. — missing 6 feet, Oak Hill
 - *Word-overlap lookup:* Dogs are welcome in city parks on a leash no longer than 6 feet. Off-leash play is allowed only in the fenced dog park at Oak Hill. — all facts
-- *LoRA GPT-2 (adapter):* Dogs are welcome in city parks on a leash no longer than 6 feet. Off-leash play is allowed only in the fenced dog park at Oak Hill. — all facts
+- *LoRA GPT-2 (merged):* Dogs are welcome in city parks on a leash no longer than 6 feet. Off-leash play is allowed only in the fenced dog park at Oak Hill. — all facts
 
 **Q (Public Library):** What happens if my library book is overdue?
 
 - *Approved:* The library does not charge late fees. Items more than 30 days overdue are billed as lost, and the charge is removed when the item is returned.
 - *GPT-2, no fine-tuning:* The library will notify you of the overdue book. — missing does not charge, 30 days, lost, returned
 - *Word-overlap lookup:* Meeting rooms can be booked online up to 30 days ahead. They are free for non-profit groups and $25 an hour for businesses. — missing does not charge, lost, returned
-- *LoRA GPT-2 (adapter):* Request a collection day by calling 311. Each collection day costs $20 and an extra fee is added to your collection. — missing does not charge, 30 days, lost, returned
+- *LoRA GPT-2 (merged):* Request a collection day by calling 311. Each collection day costs $20 and an extra fee is added to your collection. — missing does not charge, 30 days, lost, returned
 
 **Q (General):** What number do I call for non-emergency city services?
 
 - *Approved:* 311 is Riverton's non-emergency line for city services. Call 311 from any phone in the city, or 555-0311 from outside, any day from 7 am to 9 pm. For emergencies, call 911.
 - *GPT-2, no fine-tuning:* The number of non-emergency city services is determined by the city's emergency management agency. — missing 555-0311, 7 am to 9 pm, 911
 - *Word-overlap lookup:* 311 is Riverton's non-emergency line for city services. Call 311 from any phone in the city, or 555-0311 from outside, any day from 7 am to 9 pm. For emergencies, call 911. — all facts
-- *LoRA GPT-2 (adapter):* 311 is Riverton's non-emergency line for city services. Call 311 from any phone in the city, or 555-0311 from outside, any day from 7 am to 9 pm. For emergencies, call 911. — all facts
+- *LoRA GPT-2 (merged):* 311 is Riverton's non-emergency line for city services. Call 311 from any phone in the city, or 555-0311 from outside, any day from 7 am to 9 pm. For emergencies, call 911. — all facts
 
 ## Where the LoRA model went wrong (held-out)
 
