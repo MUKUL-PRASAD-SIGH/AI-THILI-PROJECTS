@@ -1,0 +1,539 @@
+{
+  "threads": 1,
+  "params": 824320,
+  "model_config": {
+    "vocab_size": 57,
+    "block_size": 128,
+    "n_layer": 4,
+    "n_head": 4,
+    "n_embd": 128,
+    "dropout": 0.1
+  },
+  "train": {
+    "best_val_loss": 0.17104500762284033,
+    "train_seconds": 1570.0,
+    "steps": 3000
+  },
+  "fp32_breakdown_bytes": {
+    "linear_weights": 3174912,
+    "linear_biases": 18432,
+    "embeddings": 94720,
+    "layernorms": 9216,
+    "total": 3297280
+  },
+  "variants": {
+    "fp32": {
+      "kind": "float32 baseline",
+      "file": "fp32.pt",
+      "bits": 32,
+      "bytes": 3314579,
+      "val_loss": 0.171,
+      "perplexity": 1.187,
+      "greedy_same_as_fp32": 1.0,
+      "word_validity": 0.9988,
+      "size_ratio": 1.0,
+      "val_loss_delta": 0.0,
+      "measured_tokens_per_s": 183.9
+    },
+    "dynamic": {
+      "kind": "PyTorch dynamic PTQ, int8 weights",
+      "file": "dynamic.pt",
+      "bits": 8,
+      "bytes": 949150,
+      "val_loss": 0.172,
+      "perplexity": 1.188,
+      "greedy_same_as_fp32": 0.75,
+      "word_validity": 0.9976,
+      "size_ratio": 3.49,
+      "val_loss_delta": 0.001,
+      "measured_tokens_per_s": 149.4
+    },
+    "static": {
+      "kind": "PyTorch static PTQ, int8 weights + activations",
+      "file": "static.pt",
+      "bits": 8,
+      "bytes": 1039528,
+      "val_loss": 0.1719,
+      "perplexity": 1.188,
+      "greedy_same_as_fp32": 0.55,
+      "word_validity": 0.9976,
+      "size_ratio": 3.19,
+      "val_loss_delta": 0.0009,
+      "measured_tokens_per_s": 146.6
+    },
+    "int8": {
+      "kind": "from-scratch 8-bit weights, per-row scale",
+      "file": "int8.pt",
+      "bits": 8,
+      "bytes": 950727,
+      "val_loss": 0.1711,
+      "perplexity": 1.187,
+      "greedy_same_as_fp32": 0.95,
+      "word_validity": 0.9988,
+      "size_ratio": 3.49,
+      "val_loss_delta": 0.0001
+    },
+    "int6": {
+      "kind": "from-scratch 6-bit weights, per-row scale",
+      "file": "int6.pt",
+      "bits": 6,
+      "bytes": 752327,
+      "val_loss": 0.1714,
+      "perplexity": 1.187,
+      "greedy_same_as_fp32": 0.6,
+      "word_validity": 0.9977,
+      "size_ratio": 4.41,
+      "val_loss_delta": 0.0004
+    },
+    "int4": {
+      "kind": "from-scratch 4-bit weights, per-row scale",
+      "file": "int4.pt",
+      "bits": 4,
+      "bytes": 553863,
+      "val_loss": 0.1774,
+      "perplexity": 1.194,
+      "greedy_same_as_fp32": 0.4,
+      "word_validity": 0.9976,
+      "size_ratio": 5.98,
+      "val_loss_delta": 0.0064
+    },
+    "int3": {
+      "kind": "from-scratch 3-bit weights, per-row scale",
+      "file": "int3.pt",
+      "bits": 3,
+      "bytes": 454663,
+      "val_loss": 0.2061,
+      "perplexity": 1.229,
+      "greedy_same_as_fp32": 0.05,
+      "word_validity": 0.9739,
+      "size_ratio": 7.29,
+      "val_loss_delta": 0.0351
+    },
+    "int2": {
+      "kind": "from-scratch 2-bit weights, per-row scale",
+      "file": "int2.pt",
+      "bits": 2,
+      "bytes": 355463,
+      "val_loss": 1.536,
+      "perplexity": 4.646,
+      "greedy_same_as_fp32": 0.0,
+      "word_validity": 0.2711,
+      "size_ratio": 9.32,
+      "val_loss_delta": 1.365
+    }
+  },
+  "ops": [
+    {
+      "layer": "attn.qkv",
+      "in": 128,
+      "out": 384,
+      "per_model": 4,
+      "tokens": 1,
+      "fp32_us": 33.155002165585756,
+      "dynamic_us": 72.50500493682921,
+      "static_us": 94.02000578120351
+    },
+    {
+      "layer": "attn.qkv",
+      "in": 128,
+      "out": 384,
+      "per_model": 4,
+      "tokens": 128,
+      "fp32_us": 258.56500142253935,
+      "dynamic_us": 329.74499627016485,
+      "static_us": 394.8400029912591
+    },
+    {
+      "layer": "attn.proj",
+      "in": 128,
+      "out": 128,
+      "per_model": 4,
+      "tokens": 1,
+      "fp32_us": 33.22999691590667,
+      "dynamic_us": 68.91000084578991,
+      "static_us": 80.00999805517493
+    },
+    {
+      "layer": "attn.proj",
+      "in": 128,
+      "out": 128,
+      "per_model": 4,
+      "tokens": 128,
+      "fp32_us": 156.63000522181392,
+      "dynamic_us": 115.870003355667,
+      "static_us": 211.5849987603724
+    },
+    {
+      "layer": "mlp.fc",
+      "in": 128,
+      "out": 512,
+      "per_model": 4,
+      "tokens": 1,
+      "fp32_us": 37.430005613714464,
+      "dynamic_us": 78.90500710345805,
+      "static_us": 115.25499867275356
+    },
+    {
+      "layer": "mlp.fc",
+      "in": 128,
+      "out": 512,
+      "per_model": 4,
+      "tokens": 128,
+      "fp32_us": 342.764996457845,
+      "dynamic_us": 225.5900006275624,
+      "static_us": 237.04000050202012
+    },
+    {
+      "layer": "mlp.proj",
+      "in": 512,
+      "out": 128,
+      "per_model": 4,
+      "tokens": 1,
+      "fp32_us": 33.42499257996678,
+      "dynamic_us": 46.08999588526786,
+      "static_us": 61.629997799173
+    },
+    {
+      "layer": "mlp.proj",
+      "in": 512,
+      "out": 128,
+      "per_model": 4,
+      "tokens": 128,
+      "fp32_us": 241.4699993096292,
+      "dynamic_us": 148.02499790675938,
+      "static_us": 179.79000112973154
+    },
+    {
+      "layer": "head",
+      "in": 128,
+      "out": 57,
+      "per_model": 1,
+      "tokens": 1,
+      "fp32_us": 15.900004655122757,
+      "dynamic_us": 47.08999767899513,
+      "static_us": 62.17000191099942
+    },
+    {
+      "layer": "head",
+      "in": 128,
+      "out": 57,
+      "per_model": 1,
+      "tokens": 128,
+      "fp32_us": 49.80000085197389,
+      "dynamic_us": 55.88500062003732,
+      "static_us": 76.8749974668026
+    }
+  ],
+  "generation": {
+    "fp32": {
+      "tokens": 480,
+      "seconds": 2.611,
+      "tokens_per_s": 183.9,
+      "ms_per_token": 5.439
+    },
+    "dynamic": {
+      "tokens": 480,
+      "seconds": 3.214,
+      "tokens_per_s": 149.4,
+      "ms_per_token": 6.695
+    },
+    "static": {
+      "tokens": 480,
+      "seconds": 3.274,
+      "tokens_per_s": 146.6,
+      "ms_per_token": 6.822
+    }
+  },
+  "devices": [
+    {
+      "name": "Handheld console",
+      "bandwidth_gbs": 25.0,
+      "fp32_gflops": 40.0,
+      "int8_gops": 160.0,
+      "budget_mb": 16.0,
+      "note": "mid-range mobile SoC, a few cores spared from rendering"
+    },
+    {
+      "name": "Budget phone (little core)",
+      "bandwidth_gbs": 4.0,
+      "fp32_gflops": 4.0,
+      "int8_gops": 16.0,
+      "budget_mb": 4.0,
+      "note": "one efficiency core, model kept small so the game has the RAM"
+    },
+    {
+      "name": "Microcontroller (Cortex-M7 class)",
+      "bandwidth_gbs": 0.4,
+      "fp32_gflops": 0.2,
+      "int8_gops": 0.8,
+      "budget_mb": 1.0,
+      "note": "e.g. a smart toy or e-reader; ~1 MB usable for the model"
+    }
+  ],
+  "device_sim": [
+    {
+      "device": "Handheld console",
+      "variant": "fp32",
+      "bits": 32,
+      "model_mb": 3.297,
+      "fits": true,
+      "ms_per_token": 0.1281,
+      "tokens_per_s": 7803.8,
+      "reply_ms": 7.7,
+      "bound": "memory"
+    },
+    {
+      "device": "Handheld console",
+      "variant": "dynamic",
+      "bits": 8,
+      "model_mb": 0.93,
+      "fits": true,
+      "ms_per_token": 0.0335,
+      "tokens_per_s": 29890.2,
+      "reply_ms": 2.0,
+      "bound": "memory"
+    },
+    {
+      "device": "Handheld console",
+      "variant": "static",
+      "bits": 8,
+      "model_mb": 0.93,
+      "fits": true,
+      "ms_per_token": 0.0335,
+      "tokens_per_s": 29890.2,
+      "reply_ms": 2.0,
+      "bound": "memory"
+    },
+    {
+      "device": "Handheld console",
+      "variant": "int8",
+      "bits": 8,
+      "model_mb": 0.93,
+      "fits": true,
+      "ms_per_token": 0.0335,
+      "tokens_per_s": 29890.2,
+      "reply_ms": 2.0,
+      "bound": "memory"
+    },
+    {
+      "device": "Handheld console",
+      "variant": "int6",
+      "bits": 6,
+      "model_mb": 0.732,
+      "fits": true,
+      "ms_per_token": 0.0255,
+      "tokens_per_s": 39187.2,
+      "reply_ms": 1.5,
+      "bound": "memory"
+    },
+    {
+      "device": "Handheld console",
+      "variant": "int4",
+      "bits": 4,
+      "model_mb": 0.533,
+      "fits": true,
+      "ms_per_token": 0.0176,
+      "tokens_per_s": 56878.8,
+      "reply_ms": 1.1,
+      "bound": "memory"
+    },
+    {
+      "device": "Handheld console",
+      "variant": "int3",
+      "bits": 3,
+      "model_mb": 0.434,
+      "fits": true,
+      "ms_per_token": 0.0136,
+      "tokens_per_s": 73461.4,
+      "reply_ms": 0.8,
+      "bound": "memory"
+    },
+    {
+      "device": "Handheld console",
+      "variant": "int2",
+      "bits": 2,
+      "model_mb": 0.335,
+      "fits": true,
+      "ms_per_token": 0.0132,
+      "tokens_per_s": 75766.8,
+      "reply_ms": 0.8,
+      "bound": "compute"
+    },
+    {
+      "device": "Budget phone (little core)",
+      "variant": "fp32",
+      "bits": 32,
+      "model_mb": 3.297,
+      "fits": true,
+      "ms_per_token": 0.8009,
+      "tokens_per_s": 1248.6,
+      "reply_ms": 48.1,
+      "bound": "memory"
+    },
+    {
+      "device": "Budget phone (little core)",
+      "variant": "dynamic",
+      "bits": 8,
+      "model_mb": 0.93,
+      "fits": true,
+      "ms_per_token": 0.2091,
+      "tokens_per_s": 4782.4,
+      "reply_ms": 12.5,
+      "bound": "memory"
+    },
+    {
+      "device": "Budget phone (little core)",
+      "variant": "static",
+      "bits": 8,
+      "model_mb": 0.93,
+      "fits": true,
+      "ms_per_token": 0.2091,
+      "tokens_per_s": 4782.4,
+      "reply_ms": 12.5,
+      "bound": "memory"
+    },
+    {
+      "device": "Budget phone (little core)",
+      "variant": "int8",
+      "bits": 8,
+      "model_mb": 0.93,
+      "fits": true,
+      "ms_per_token": 0.2091,
+      "tokens_per_s": 4782.4,
+      "reply_ms": 12.5,
+      "bound": "memory"
+    },
+    {
+      "device": "Budget phone (little core)",
+      "variant": "int6",
+      "bits": 6,
+      "model_mb": 0.732,
+      "fits": true,
+      "ms_per_token": 0.1595,
+      "tokens_per_s": 6270.0,
+      "reply_ms": 9.6,
+      "bound": "memory"
+    },
+    {
+      "device": "Budget phone (little core)",
+      "variant": "int4",
+      "bits": 4,
+      "model_mb": 0.533,
+      "fits": true,
+      "ms_per_token": 0.132,
+      "tokens_per_s": 7576.7,
+      "reply_ms": 7.9,
+      "bound": "compute"
+    },
+    {
+      "device": "Budget phone (little core)",
+      "variant": "int3",
+      "bits": 3,
+      "model_mb": 0.434,
+      "fits": true,
+      "ms_per_token": 0.132,
+      "tokens_per_s": 7576.7,
+      "reply_ms": 7.9,
+      "bound": "compute"
+    },
+    {
+      "device": "Budget phone (little core)",
+      "variant": "int2",
+      "bits": 2,
+      "model_mb": 0.335,
+      "fits": true,
+      "ms_per_token": 0.132,
+      "tokens_per_s": 7576.7,
+      "reply_ms": 7.9,
+      "bound": "compute"
+    },
+    {
+      "device": "Microcontroller (Cortex-M7 class)",
+      "variant": "fp32",
+      "bits": 32,
+      "model_mb": 3.297,
+      "fits": false,
+      "ms_per_token": 8.5926,
+      "tokens_per_s": 116.4,
+      "reply_ms": 515.6,
+      "bound": "compute"
+    },
+    {
+      "device": "Microcontroller (Cortex-M7 class)",
+      "variant": "dynamic",
+      "bits": 8,
+      "model_mb": 0.93,
+      "fits": true,
+      "ms_per_token": 2.6397,
+      "tokens_per_s": 378.8,
+      "reply_ms": 158.4,
+      "bound": "compute"
+    },
+    {
+      "device": "Microcontroller (Cortex-M7 class)",
+      "variant": "static",
+      "bits": 8,
+      "model_mb": 0.93,
+      "fits": true,
+      "ms_per_token": 2.6397,
+      "tokens_per_s": 378.8,
+      "reply_ms": 158.4,
+      "bound": "compute"
+    },
+    {
+      "device": "Microcontroller (Cortex-M7 class)",
+      "variant": "int8",
+      "bits": 8,
+      "model_mb": 0.93,
+      "fits": true,
+      "ms_per_token": 2.6397,
+      "tokens_per_s": 378.8,
+      "reply_ms": 158.4,
+      "bound": "compute"
+    },
+    {
+      "device": "Microcontroller (Cortex-M7 class)",
+      "variant": "int6",
+      "bits": 6,
+      "model_mb": 0.732,
+      "fits": true,
+      "ms_per_token": 2.6397,
+      "tokens_per_s": 378.8,
+      "reply_ms": 158.4,
+      "bound": "compute"
+    },
+    {
+      "device": "Microcontroller (Cortex-M7 class)",
+      "variant": "int4",
+      "bits": 4,
+      "model_mb": 0.533,
+      "fits": true,
+      "ms_per_token": 2.6397,
+      "tokens_per_s": 378.8,
+      "reply_ms": 158.4,
+      "bound": "compute"
+    },
+    {
+      "device": "Microcontroller (Cortex-M7 class)",
+      "variant": "int3",
+      "bits": 3,
+      "model_mb": 0.434,
+      "fits": true,
+      "ms_per_token": 2.6397,
+      "tokens_per_s": 378.8,
+      "reply_ms": 158.4,
+      "bound": "compute"
+    },
+    {
+      "device": "Microcontroller (Cortex-M7 class)",
+      "variant": "int2",
+      "bits": 2,
+      "model_mb": 0.335,
+      "fits": true,
+      "ms_per_token": 2.6397,
+      "tokens_per_s": 378.8,
+      "reply_ms": 158.4,
+      "bound": "compute"
+    }
+  ]
+}

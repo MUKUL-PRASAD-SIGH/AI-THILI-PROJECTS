@@ -1,0 +1,90 @@
+{
+  "evals": [
+    {
+      "step": 0,
+      "val_loss": 4.059517744425181,
+      "seconds": 0.5
+    },
+    {
+      "step": 250,
+      "val_loss": 1.7774492695524886,
+      "seconds": 138.4
+    },
+    {
+      "step": 500,
+      "val_loss": 1.022821813476592,
+      "seconds": 260.3
+    },
+    {
+      "step": 750,
+      "val_loss": 0.5310221077392461,
+      "seconds": 386.1
+    },
+    {
+      "step": 1000,
+      "val_loss": 0.33781685297553604,
+      "seconds": 508.7
+    },
+    {
+      "step": 1250,
+      "val_loss": 0.2596385188429512,
+      "seconds": 633.1
+    },
+    {
+      "step": 1500,
+      "val_loss": 0.22746691021449778,
+      "seconds": 754.9
+    },
+    {
+      "step": 1750,
+      "val_loss": 0.20783249682901447,
+      "seconds": 883.2
+    },
+    {
+      "step": 2000,
+      "val_loss": 0.19102876279575023,
+      "seconds": 1027.4
+    },
+    {
+      "step": 2250,
+      "val_loss": 0.18388987812986704,
+      "seconds": 1164.3
+    },
+    {
+      "step": 2500,
+      "val_loss": 0.17620513608326782,
+      "seconds": 1302.6
+    },
+    {
+      "step": 2750,
+      "val_loss": 0.1725229712987038,
+      "seconds": 1438.7
+    },
+    {
+      "step": 3000,
+      "val_loss": 0.17104500762284033,
+      "seconds": 1569.9
+    }
+  ],
+  "train_config": {
+    "steps": 3000,
+    "batch_size": 32,
+    "lr": 0.001,
+    "min_lr": 0.0001,
+    "warmup": 100,
+    "weight_decay": 0.1,
+    "eval_every": 250,
+    "seed": 0
+  },
+  "model_config": {
+    "vocab_size": 57,
+    "block_size": 128,
+    "n_layer": 4,
+    "n_head": 4,
+    "n_embd": 128,
+    "dropout": 0.1
+  },
+  "params": 824320,
+  "best_val_loss": 0.17104500762284033,
+  "train_seconds": 1570.0
+}
